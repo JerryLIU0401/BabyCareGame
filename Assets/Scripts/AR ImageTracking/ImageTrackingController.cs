@@ -143,10 +143,6 @@ public class ImageTrackingController : MonoBehaviour
             }
         }
         
-        // if (hasTrackedImage)
-        // {
-        //     searchText.text = currentImageName;
-        // }
         if (hasTrackedImage && eventArgs.updated.Count > 0)
         {
             string lastTrackedName = eventArgs.updated[^1].referenceImage.name;

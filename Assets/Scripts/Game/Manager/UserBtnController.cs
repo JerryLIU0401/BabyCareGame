@@ -18,7 +18,7 @@ namespace Manager
         [SerializeField] private Image dropBtnImage;
         [SerializeField] private Sprite dropBtnDefaultImage;
         [SerializeField] private Sprite dropBtnUseImage;
-        [SerializeField] private TMP_Text scanText;
+        //[SerializeField] private TMP_Text scanText;
         [SerializeField] private Button nextButton;
         [SerializeField] private Button dropButton;
         [SerializeField] private Button resultBtn;
@@ -29,11 +29,6 @@ namespace Manager
         private void Awake()
         {
             gameManager = FindFirstObjectByType<GameManager>();
-            
-            if (gameManager.GetGameData()!=null)
-            {
-                isScan = gameManager.GetGameData().isScan;
-            }
             
         }
         
@@ -47,12 +42,12 @@ namespace Manager
                 if (nextButton != null)
                 {
                     nextButton.onClick.RemoveAllListeners(); // 先清除舊的綁定
-                    nextButton.onClick.AddListener(gameManager.NextPlayerBtn); // 重新綁定
+                    // nextButton.onClick.AddListener(gameManager.NextPlayerBtn); // 重新綁定
                 }
                 if (dropButton != null)
                 {
                     dropButton.onClick.RemoveAllListeners(); // 先清除舊的綁定
-                    dropButton.onClick.AddListener(gameManager.NextPlayerBtn); // 重新綁定
+                    // dropButton.onClick.AddListener(gameManager.NextPlayerBtn); // 重新綁定
                 }
 
                 if (resultBtn != null)
@@ -64,29 +59,6 @@ namespace Manager
             
         }
         
-        private void OnEnable()
-        {
-            gameManager.UpdateScanCount += UpdateScanText;
-        }
-
-        private void OnDisable()
-        {
-            gameManager.UpdateScanCount -= UpdateScanText;
-        }
-
-        private void Update()
-        {
-            
-            if (!isScan)
-            {
-                dropBtnImage.sprite = dropBtnUseImage;
-            }
-            else
-            {
-                dropBtnImage.sprite = dropBtnDefaultImage;
-            }
-        }
-
         public void DropCardBtn()
         {
             if (!isScan)
@@ -99,29 +71,12 @@ namespace Manager
         public void ScanCardBtn()
         {
             GameData btnGameData = gameManager.GetGameData();
-            btnGameData.scanCount = gameManager.GetGameData().scanCount;
-            btnGameData.isScan = gameManager.GetGameData().isScan;
-            if (btnGameData.scanCount > 0)
-            {
-                scanButton.GetComponent<Button>().enabled = false;
-                print("掃描卡片");
-                btnGameData.scanCount -= 1;
-                btnGameData.isScan = true;
-                isScan = btnGameData.isScan;
-                gameManager.UpdateGameData(btnGameData);
-                scanText.text = $"剩餘次數：{btnGameData.scanCount}";
-                GoARScene();
-            }
-            
-        }
 
-        //更新每回合的可掃描次數,在回合的一開始執行
-        private void UpdateScanText(int scanCount)
-        {
-            isScan = false;
-            scanText.text = $"剩餘次數：{scanCount}";
+            scanButton.GetComponent<Button>().enabled = false;
+            print("掃描卡片");
+            gameManager.UpdateGameData(btnGameData);
+            GoARScene();
         }
-        
      
         
         //移動到AR場景

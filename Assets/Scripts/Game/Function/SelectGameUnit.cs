@@ -26,7 +26,7 @@ namespace Function.Select
         [SerializeField] private Sprite leftImage;
 
         // 定義事件，通知遊玩單元
-        public event Action<String> OnComfirmPlayUnit;
+        public event Action<bool> OnComfirmPlayTech;
         
         private void Start()
         {
@@ -75,8 +75,15 @@ namespace Function.Select
         //觸發事件，傳送選擇的遊玩單元
         public void ComfirmPlayUnit()
         {
+            if (unitText.text == "開啟")
+            {
+                OnComfirmPlayTech?.Invoke(true);
+            }
+            else
+            {
+                OnComfirmPlayTech?.Invoke(false);
+            }
             print($"教學關卡：{unitText.text}");
-            OnComfirmPlayUnit?.Invoke(unitText.text);
         }
     }
 }

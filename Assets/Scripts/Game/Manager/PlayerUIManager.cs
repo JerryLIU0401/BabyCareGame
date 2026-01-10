@@ -25,6 +25,7 @@ namespace Manager
         //紀錄當前遊玩玩家的順序
         private int currentPlayerCount;
         
+        // --------------------- UI 素材 ----------------------------
         // 玩家 UI 預製體
         [SerializeField] private GameObject playerUIPrefab;
         // 放置 UI 的父物件
@@ -37,19 +38,12 @@ namespace Manager
         
         // 存放玩家頭像的陣列
         [SerializeField] private Sprite[] playerSprites;
-        
-        [SerializeField] private Image playerIcon;
-        
-        //存放當前玩家的頭像
-        [SerializeField] private Sprite[] playerIconsSprites;
       
         //UI的顯示
         [SerializeField] private GameObject gameOverPanel;
-        [SerializeField] private TMP_Text scanText;
         
-        //事件註冊
-        public event Action<Transform,List<bool>> OnDisplayBuildingUI;
-        public event Action OnModelDisplay;
+        
+        
         private void Awake()
         {
             gameManager = FindFirstObjectByType<GameManager>();
@@ -59,22 +53,23 @@ namespace Manager
         private void Start()
         {
             List<PlayerData> playerData = gameManager.GetAllPlayerData();
-            //轉場回來才執行
+            
+            //轉場回來執行資料讀取
             if (playerData.Count != 0)
             {
                 GameData gameData = gameManager.GetGameData();
                 PlayerController player = FindFirstObjectByType<PlayerController>();
-                scanText.text = $"剩餘次數：{gameData.scanCount}";
                 player.EditPlayerScoreData(gameManager.GetPlayerData().score);
                 GeneratePlayerUI(playerData);
                 DisplayCurrentPlayer(gameData);
-                OnModelDisplay?.Invoke();
             }
         }
 
         private void OnEnable()
         {
+            // 下一位玩家啟動要改變當前資訊
             gameManager.ChangePlayerUI += DisplayCurrentPlayer;
+            // 基本資料生成完成，要產生相對應 UI
             gameManager.OnPlayerDataGenerated += GeneratePlayerUI;
         }
 
@@ -84,7 +79,7 @@ namespace Manager
             gameManager.ChangePlayerUI -= DisplayCurrentPlayer;
         }
         
-        //生成玩家UI
+        // --------------------- 生成玩家 UI ----------------------------
         private void GeneratePlayerUI(List<PlayerData> players)
         {
             // 清除現有的 UI
@@ -100,35 +95,46 @@ namespace Manager
                 GameObject playerUI = Instantiate(playerUIPrefab, uiParent);
                 playerUIObjects.Add(playerUI);
 
-                //設定玩家背景
+                // 設定玩家背景
                  var bg = playerUI.transform.Find("DispalyUI").transform.Find("BG").GetComponent<Image>();
                 
                 // 設定玩家頭像
                 var playerIcon = playerUI.transform.Find("DispalyUI").transform.Find("PlayerIcon").GetComponentInChildren<Image>();
                 
-                //將每一位玩家的分數印行更新＆顯示
+                // 將每一位玩家的分數印行更新＆顯示
                 var playerScoeText = playerUI.transform.Find("DispalyUI").GetComponentInChildren<TMP_Text>();
                 
-                //傳遞要生成建築圖示的位置
-                var buildUiParent = playerUI.transform.Find("DispalyUI").transform.Find("Building");
+                // 綁定頭像按鈕：點擊後切換到該玩家（index 使用 1-based）
+                var playerBtn = playerUI.GetComponent<Button>();
                 
+                int playerIndex = i + 1; // 1-based
+                
+                if (playerBtn != null)
+                {
+                    playerBtn.onClick.RemoveAllListeners();
+                    playerBtn.onClick.AddListener(() => gameManager.ChosePlayerBtn(playerIndex));
+                }
+                else
+                {
+                    Debug.LogWarning("[PlayerUIManager] DispalyUI/PlayerIcon 缺少 Button 元件，無法點擊切換玩家。", playerUI);
+                }
+                
+                // 確認玩家頭像顯示正確
                 if (playerIcon != null && playerSprites.Length > 0)
                 {
                     bg.sprite = bgSprites[i % bgSprites.Length];
                     playerIcon.sprite = playerSprites[i % playerSprites.Length]; // 確保不超出陣列範圍
                 }
-
+                
+                // 顯示該玩家分數
                 if (playerScoeText != null)
                 {
-                    playerScoeText.text = $"{players[i].score}點";
+                    playerScoeText.text = $"{players[i].score}分";
                 }
-
-                List<bool> isPlayerBuild = players[i].GetBuildingColorStateList();
-                OnDisplayBuildingUI?.Invoke(buildUiParent,isPlayerBuild);
             }
         }
 
-        //更改目前UI設定
+        // --------------------- 更換玩家調整 UI 介面 ----------------------------
         private void DisplayCurrentPlayer(GameData gameData)
         {
             for (int i = 1; i <= playerUIObjects.Count; i++)
@@ -142,12 +148,10 @@ namespace Manager
 
                 //更新玩家的分數顯示
                 var playerScoeText = playerObject.transform.Find("DispalyUI").GetComponentInChildren<TMP_Text>();
-                //傳遞要生成建築圖示的位置
-                var buildUiParent = playerObject.transform.Find("DispalyUI").transform.Find("Building");
                 
                 if (i == gameData.currentPlayer)
                 {
-                    displayObject.SetActive(false);
+                    displayObject.SetActive(true);
                     currentObject.SetActive(true);
                     
                     //調整文字內容
@@ -156,7 +160,6 @@ namespace Manager
                     {
                         currentText.text = $"{gameData.currentPlayer}P的回合";
                     }
-                    playerIcon.sprite = playerIconsSprites[(i-1) % playerIconsSprites.Length];
                 }
                 else
                 {
@@ -164,38 +167,9 @@ namespace Manager
                     currentObject.SetActive(false);
                     if (playerScoeText != null)
                     {
-                        playerScoeText.text = $"{currentPlayer.score}點";
+                        playerScoeText.text = $"{currentPlayer.score}分";
                     }
                 }
-                List<bool> isPlayerBuild = currentPlayer.GetBuildingColorStateList();
-                OnDisplayBuildingUI?.Invoke(buildUiParent, isPlayerBuild);
-                OnModelDisplay?.Invoke();
-            }
-        }
-
-        //取得當前的開始玩家並調整顯示方法
-        public void GetStartPlayerCount(int currentPlayer)
-        {
-            currentPlayerCount = currentPlayer;
-            for (int i = 1; i <= playerUIObjects.Count; i++)
-            {
-                var displayObject = playerUIObjects[i-1].transform.Find("DispalyUI").gameObject;
-                var currentObject = playerUIObjects[i-1].transform.Find("CurrentPlayer").gameObject;
-               
-                if (i == currentPlayerCount )
-                {
-                    displayObject.SetActive(false);
-                    currentObject.SetActive(true);
-                    
-                    //調整文字內容
-                    var currentText = currentObject.GetComponentInChildren<Text>();
-                    if (currentText != null)
-                    {
-                        currentText.text = $"{currentPlayerCount.ToString()}P的回合";
-                    }
-                    playerIcon.sprite = playerIconsSprites[(i-1) % playerIconsSprites.Length];
-                }
-
             }
         }
 
