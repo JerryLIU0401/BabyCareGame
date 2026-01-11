@@ -13,14 +13,15 @@ namespace Manager
     {
         private GameManager gameManager;
         
-        private bool isScan = false;
-        [SerializeField] private GameObject dropCardPanel;
-        [SerializeField] private Image dropBtnImage;
-        [SerializeField] private Sprite dropBtnDefaultImage;
-        [SerializeField] private Sprite dropBtnUseImage;
+        // private bool isScan = false;
+        // [SerializeField] private GameObject dropCardPanel;
+        // [SerializeField] private Image spinBtnImage;
+        // [SerializeField] private Sprite dropBtnDefaultImage;
+        // [SerializeField] private Sprite dropBtnUseImage;
         //[SerializeField] private TMP_Text scanText;
-        [SerializeField] private Button nextButton;
-        [SerializeField] private Button dropButton;
+        //[SerializeField] private Button nextButton;
+
+        [SerializeField] private Button openSpinPanelButton;
         [SerializeField] private Button resultBtn;
         [SerializeField] private Button scanButton;
         
@@ -29,7 +30,6 @@ namespace Manager
         private void Awake()
         {
             gameManager = FindFirstObjectByType<GameManager>();
-            
         }
         
         
@@ -39,16 +39,11 @@ namespace Manager
 
             if (gameManager != null)
             {
-                if (nextButton != null)
-                {
-                    nextButton.onClick.RemoveAllListeners(); // 先清除舊的綁定
-                    // nextButton.onClick.AddListener(gameManager.NextPlayerBtn); // 重新綁定
-                }
-                if (dropButton != null)
-                {
-                    dropButton.onClick.RemoveAllListeners(); // 先清除舊的綁定
-                    // dropButton.onClick.AddListener(gameManager.NextPlayerBtn); // 重新綁定
-                }
+                // if (openSpinPanelButton != null)
+                // {
+                //     openSpinPanelButton.onClick.RemoveAllListeners();
+                //     openSpinPanelButton.onClick.AddListener(gameManager.OpenSpinPanel);
+                // }
 
                 if (resultBtn != null)
                 {
@@ -59,13 +54,13 @@ namespace Manager
             
         }
         
-        public void DropCardBtn()
-        {
-            if (!isScan)
-            {
-                dropCardPanel.SetActive(true);
-            }
-        }
+        // public void DropCardBtn()
+        // {
+        //     if (!isScan)
+        //     {
+        //         dropCardPanel.SetActive(true);
+        //     }
+        // }
         
         //掃卡片按鈕設定
         public void ScanCardBtn()

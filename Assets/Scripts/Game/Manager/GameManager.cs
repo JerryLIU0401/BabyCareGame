@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
-
+using UnityEngine.UI;
 namespace Manager
 {
     //玩家資料產生 以及遊戲相關設定
@@ -38,6 +38,8 @@ namespace Manager
         //UI的顯示
         [SerializeField] private GameObject settingPanel;
         [SerializeField] private Sprite[] playerSprites;
+        [SerializeField] private GameObject spinPanel;
+       
         private void Awake()
         {
             // //等於零代表目前沒有建立資料 也代表沒有遊戲設定
@@ -89,6 +91,10 @@ namespace Manager
                 instance = null; // 確保回到 Menu 時可以重新創建 GameManager
             }
         }
+        
+        
+
+        
         
         //--------------------- 玩家順序選擇 ----------------------------
         //呼叫有監聽此事件的更新UI或是資料
