@@ -20,12 +20,12 @@ public class MenuController : MonoBehaviour
                 case TouchPhase.Ended:
                     // PlayGame();
                     SceneManager.LoadScene("Game");
+                    // GoGameScene();
                     break;
             }
         }
     }
-
-    //移動到AR場景
+    
     private void GoGameScene()
     {
         SwitchScene switchScenes = Instantiate(switchScenePrefab);
