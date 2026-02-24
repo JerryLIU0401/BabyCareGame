@@ -21,9 +21,11 @@ namespace Manager
         //[SerializeField] private TMP_Text scanText;
         //[SerializeField] private Button nextButton;
 
-        [SerializeField] private Button openSpinPanelButton;
+        [SerializeField] private Button spinPanelButton;
         [SerializeField] private Button resultBtn;
         [SerializeField] private Button scanButton;
+        
+        [SerializeField] private GameObject spinPanel;
         
         //轉場
         [SerializeField] SwitchScene switchScenePrefab;
@@ -36,15 +38,8 @@ namespace Manager
 
         private void Start()
         {
-
             if (gameManager != null)
             {
-                // if (openSpinPanelButton != null)
-                // {
-                //     openSpinPanelButton.onClick.RemoveAllListeners();
-                //     openSpinPanelButton.onClick.AddListener(gameManager.OpenSpinPanel);
-                // }
-
                 if (resultBtn != null)
                 {
                     resultBtn.onClick.RemoveAllListeners(); // 先清除舊的綁定
@@ -62,11 +57,33 @@ namespace Manager
         //     }
         // }
         
+        
+        //轉盤設定
+        public void OpenSpin()
+        {
+            GameData btnGameData = gameManager.GetGameData();
+            
+            //避免沒有選人造成錯誤
+            if (btnGameData.currentPlayer == 0)
+            {
+                return;
+            }
+           
+            spinPanel.SetActive(true);
+            print("開啟轉盤");
+        }
+        
         //掃卡片按鈕設定
         public void ScanCardBtn()
         {
             GameData btnGameData = gameManager.GetGameData();
-
+            
+            //避免沒有選人造成錯誤
+            if (btnGameData.currentPlayer == 0)
+            {
+                return;
+            }
+            
             scanButton.GetComponent<Button>().enabled = false;
             print("掃描卡片");
             gameManager.UpdateGameData(btnGameData);

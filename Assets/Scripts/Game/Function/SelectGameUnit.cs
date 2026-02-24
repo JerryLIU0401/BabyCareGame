@@ -60,10 +60,12 @@ namespace Function.Select
             if (currentUnit <= 0)
             {
                 leftBtnImage.sprite = defaultLeftImage;
+                rightBtnImage.sprite = rightImage;
             }
             else if (currentUnit >= units.Length - 1)
             {
                 rightBtnImage.sprite = defaultRightImage;
+                leftBtnImage.sprite = leftImage;
             }
             else
             {

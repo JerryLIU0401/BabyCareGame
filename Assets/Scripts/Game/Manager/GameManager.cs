@@ -37,8 +37,8 @@ namespace Manager
         //---------------------UI 素材----------------------------
         //UI的顯示
         [SerializeField] private GameObject settingPanel;
+        [SerializeField] private GameObject techPanel;
         [SerializeField] private Sprite[] playerSprites;
-        [SerializeField] private GameObject spinPanel;
        
         private void Awake()
         {
@@ -72,13 +72,13 @@ namespace Manager
         private void OnEnable()
         {
             selectPlayerCount.OnPlayerCountConfirmed += GeneratePlayerData;
-            selectGameUnit.OnComfirmPlayTech += WriteGameDataGameTechPanel;
+            selectGameUnit.OnComfirmPlayTech += GameDataGameTechPanel;
         }
 
         private void OnDisable()
         {
             selectPlayerCount.OnPlayerCountConfirmed -= GeneratePlayerData;
-            selectGameUnit.OnComfirmPlayTech -= WriteGameDataGameTechPanel;
+            selectGameUnit.OnComfirmPlayTech -= GameDataGameTechPanel;
         }
 
                 
@@ -229,10 +229,18 @@ namespace Manager
         
         // --------------------- Game Data ----------------------------
         
-        //-----寫入是否需要教學關卡-----
-        private void WriteGameDataGameTechPanel(bool isOpen)
+        //-----寫入是否需要教學關卡、並根據情況開啟教學關卡-----
+        private void GameDataGameTechPanel(bool isOpen)
         {
             gameData[0].isTech = isOpen;
+            //如果需要教學就開啟介紹
+            if (isOpen)
+            {
+                Canvas canvas = FindFirstObjectByType<Canvas>();
+                GameObject techPanelObj = Instantiate(techPanel,canvas.transform);
+                techPanelObj.transform.SetAsLastSibling();
+                techPanelObj.SetActive(true);
+            }
         }
         
         //-----獲得遊戲資料-----
