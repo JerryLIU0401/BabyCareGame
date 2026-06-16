@@ -1224,9 +1224,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedImageManager: {fileID: 1090629872}
   imageLibraries:
-  - {fileID: 11400000, guid: 6aff2ee4c79f04c8db1bfb24612df915, type: 2}
+  - {fileID: 11400000, guid: ad43dffdd81ecc744ac2d3bf72977b83, type: 2}
   prefabs:
-  - {fileID: 6142632873529919136, guid: 810e282be0a544132b04991d4379c837, type: 3}
+  - {fileID: 858302159338487890, guid: b471dc4dbbf5b9f4ea01e18a61c63f70, type: 3}
   checkInterval: 1
   searchText: {fileID: 573196938}
   useBtnGameObject: {fileID: 869331084}
