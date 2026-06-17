@@ -1,0 +1,37 @@
+{
+  "files": {
+    "code": [
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\AR ImageTracking\\ARCardManager.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\AR ImageTracking\\ImageTrackingController.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Card\\ModelInfo.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Data\\GameData.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Data\\PlayerData.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Function\\SelectGameUnit.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Function\\SelectPlayerCount.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Manager\\GameManager.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Manager\\PlayerUIManager.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Manager\\TransitionManager.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Manager\\UserBtnController.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Player\\PlayerController.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\Scene\\SceneController.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\SpinFateManager.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\UI\\GameResultDisplay.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\UI\\PlayerGridLayoutAdjust.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Game\\UI\\TeachPanelControl.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Menu\\MenuController.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Menu\\TitleBlink.cs",
+      "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts\\Scene\\SwitchScene.cs"
+    ],
+    "document": [],
+    "paper": [],
+    "image": [],
+    "video": []
+  },
+  "total_files": 20,
+  "total_words": 3825,
+  "needs_graph": false,
+  "warning": "Corpus is ~3,825 words - fits in a single context window. You may not need a graph.",
+  "skipped_sensitive": [],
+  "graphifyignore_patterns": 43,
+  "scan_root": "C:\\Users\\jerry\\OneDrive\\Documents\\GitHub\\BabyCareGame\\Assets\\Scripts"
+}

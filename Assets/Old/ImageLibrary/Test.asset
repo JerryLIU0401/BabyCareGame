@@ -26,4 +26,4 @@ MonoBehaviour:
     m_Size: {x: 0.09, y: 0.13657388}
     m_SpecifySize: 1
     m_Name: Grass
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: e7bd1f9abebb9481ea825534352bbb62, type: 3}

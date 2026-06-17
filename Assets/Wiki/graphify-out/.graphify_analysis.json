@@ -1,0 +1,449 @@
+{
+  "communities": {
+    "0": [
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_awake",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_cleanuparbeforescenechange",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_handletrackedimage",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_ondisable",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_onenable",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_ontrackedimageschanged",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_start",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_switchtonextlibrary",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_update",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_updatemodeltransform",
+      "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller_usecardbtn",
+      "artrackedimage",
+      "artrackedimagemanager",
+      "artrackedimageschangedeventargs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_imagetrackingcontroller_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_imagetrackingcontroller_cs_bool",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_imagetrackingcontroller_cs_float",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_imagetrackingcontroller_cs_gameobject",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_imagetrackingcontroller_cs_int",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_imagetrackingcontroller_cs_string",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_imagetrackingcontroller_cs_text",
+      "dictionary",
+      "vector3",
+      "xrreferenceimagelibrary"
+    ],
+    "1": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_gamemanager_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_gamemanager_cs_gamedata",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_gamemanager_cs_gameobject",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_gamemanager_cs_list",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_gamemanager_cs_playerdata",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_gamemanager_cs_sprite",
+      "manager_gamemanager_gamemanager",
+      "manager_gamemanager_gamemanager_awake",
+      "manager_gamemanager_gamemanager_choseplayerbtn",
+      "manager_gamemanager_gamemanager_gamedatagametechpanel",
+      "manager_gamemanager_gamemanager_gamevictory",
+      "manager_gamemanager_gamemanager_generateplayerdata",
+      "manager_gamemanager_gamemanager_getallplayerdata",
+      "manager_gamemanager_gamemanager_getgamedata",
+      "manager_gamemanager_gamemanager_getplayerdata",
+      "manager_gamemanager_gamemanager_ondisable",
+      "manager_gamemanager_gamemanager_onenable",
+      "manager_gamemanager_gamemanager_triggergamevictory",
+      "manager_gamemanager_gamemanager_update",
+      "manager_gamemanager_gamemanager_updateallplayerdata",
+      "manager_gamemanager_gamemanager_updategamedata",
+      "manager_gamemanager_gamemanager_updateplayerdata",
+      "manager_gamemanager_manager",
+      "selectgameunit",
+      "selectplayercount"
+    ],
+    "2": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_card_modelinfo_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_card_modelinfo_cs_int",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_card_modelinfo_cs_string",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_scene_scenecontroller_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_playergridlayoutadjust_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_playergridlayoutadjust_cs_int",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_playergridlayoutadjust_cs_vector2",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_menu_menucontroller_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_menu_menucontroller_cs_switchscene",
+      "card_modelinfo_cardmodel",
+      "card_modelinfo_modelinfo",
+      "gridlayoutgroup",
+      "menu_menucontroller_menucontroller",
+      "menu_menucontroller_menucontroller_gogamescene",
+      "menu_menucontroller_menucontroller_update",
+      "modeltype",
+      "monobehaviour",
+      "scene_scenecontroller_manager",
+      "scene_scenecontroller_scenecontroller",
+      "scene_scenecontroller_scenecontroller_gamestart",
+      "ui_playergridlayoutadjust_playergridlayoutadjust",
+      "ui_playergridlayoutadjust_playergridlayoutadjust_adjustgrid",
+      "ui_playergridlayoutadjust_ui"
+    ],
+    "3": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs_bool",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs_button",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs_float",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs_gameobject",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs_ienumerator",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs_list",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs_recttransform",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs_string",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_spinfatemanager_cs_transform",
+      "color",
+      "game_spinfatemanager_spinfatemanager",
+      "game_spinfatemanager_spinfatemanager_clearchildren",
+      "game_spinfatemanager_spinfatemanager_createlegend",
+      "game_spinfatemanager_spinfatemanager_refreshwheel",
+      "game_spinfatemanager_spinfatemanager_spinfate",
+      "game_spinfatemanager_spinfatemanager_spinroutine",
+      "game_spinfatemanager_spinfatemanager_start",
+      "game_spinfatemanager_spinfatemanager_updatewheelangles",
+      "game_spinfatemanager_spinoption"
+    ],
+    "4": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_playeruimanager_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_playeruimanager_cs_gamedata",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_playeruimanager_cs_gamemanager",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_playeruimanager_cs_gameobject",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_playeruimanager_cs_int",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_playeruimanager_cs_list",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_playeruimanager_cs_playerdata",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_playeruimanager_cs_sprite",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_playeruimanager_cs_transform",
+      "manager_playeruimanager_manager",
+      "manager_playeruimanager_playeruimanager",
+      "manager_playeruimanager_playeruimanager_awake",
+      "manager_playeruimanager_playeruimanager_displaycurrentplayer",
+      "manager_playeruimanager_playeruimanager_generateplayerui",
+      "manager_playeruimanager_playeruimanager_ondisable",
+      "manager_playeruimanager_playeruimanager_onenable",
+      "manager_playeruimanager_playeruimanager_opengameresultpanel",
+      "manager_playeruimanager_playeruimanager_start",
+      "playergridlayoutadjust"
+    ],
+    "5": [
+      "animationcurve",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_transitionmanager_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_transitionmanager_cs_canvasgroup",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_transitionmanager_cs_float",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_transitionmanager_cs_ienumerator",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_transitionmanager_cs_recttransform",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_transitionmanager_cs_tmp_text",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_transitionmanager_cs_vector2",
+      "coroutine",
+      "manager_transitionmanager_manager",
+      "manager_transitionmanager_transitionmanager",
+      "manager_transitionmanager_transitionmanager_playtransition",
+      "manager_transitionmanager_transitionmanager_showtransition",
+      "manager_transitionmanager_transitionmanager_slideandfade",
+      "manager_transitionmanager_transitionmanager_start"
+    ],
+    "6": [
+      "ar_imagetracking_arcardmanager_arcardmanager",
+      "ar_imagetracking_arcardmanager_arcardmanager_awake",
+      "ar_imagetracking_arcardmanager_arcardmanager_backgamescene",
+      "ar_imagetracking_arcardmanager_arcardmanager_cardstate",
+      "ar_imagetracking_arcardmanager_arcardmanager_getfoundationcardscore",
+      "ar_imagetracking_arcardmanager_arcardmanager_gogamescene",
+      "ar_imagetracking_arcardmanager_arcardmanager_ondisable",
+      "ar_imagetracking_arcardmanager_arcardmanager_onenable",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_arcardmanager_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_arcardmanager_cs_gamemanager",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_arcardmanager_cs_gameobject",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_arcardmanager_cs_switchscene",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_ar_imagetracking_arcardmanager_cs_text",
+      "imagetrackingcontroller",
+      "modelinfo"
+    ],
+    "7": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_player_playercontroller_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_player_playercontroller_cs_gamedata",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_player_playercontroller_cs_gamemanager",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_player_playercontroller_cs_list",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_player_playercontroller_cs_playerdata",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_player_playercontroller_cs_tmp_text",
+      "player_playercontroller_player",
+      "player_playercontroller_playercontroller",
+      "player_playercontroller_playercontroller_awake",
+      "player_playercontroller_playercontroller_changui",
+      "player_playercontroller_playercontroller_editplayerscoredata",
+      "player_playercontroller_playercontroller_initialplayerscore",
+      "player_playercontroller_playercontroller_ondisable",
+      "player_playercontroller_playercontroller_onenable"
+    ],
+    "8": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectgameunit_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectgameunit_cs_image",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectgameunit_cs_int",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectgameunit_cs_sprite",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectgameunit_cs_string",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectgameunit_cs_tmp_text",
+      "function_selectgameunit_function_select",
+      "function_selectgameunit_selectgameunit",
+      "function_selectgameunit_selectgameunit_comfirmplayunit",
+      "function_selectgameunit_selectgameunit_nextunit",
+      "function_selectgameunit_selectgameunit_previousunit",
+      "function_selectgameunit_selectgameunit_start",
+      "function_selectgameunit_selectgameunit_updatebtnimage"
+    ],
+    "9": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_gameresultdisplay_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_gameresultdisplay_cs_gamemanager",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_gameresultdisplay_cs_gameobject",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_gameresultdisplay_cs_image",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_gameresultdisplay_cs_list",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_gameresultdisplay_cs_playerdata",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_gameresultdisplay_cs_switchscene",
+      "ui_gameresultdisplay_gameresultdisplay",
+      "ui_gameresultdisplay_gameresultdisplay_awake",
+      "ui_gameresultdisplay_gameresultdisplay_backtomenu",
+      "ui_gameresultdisplay_gameresultdisplay_gameresultuidisplay",
+      "ui_gameresultdisplay_gameresultdisplay_ondisable",
+      "ui_gameresultdisplay_gameresultdisplay_onenable"
+    ],
+    "10": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectplayercount_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectplayercount_cs_image",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectplayercount_cs_int",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectplayercount_cs_sprite",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_function_selectplayercount_cs_tmp_text",
+      "function_selectplayercount_function_select",
+      "function_selectplayercount_selectplayercount",
+      "function_selectplayercount_selectplayercount_addplayer",
+      "function_selectplayercount_selectplayercount_confirmplayercount",
+      "function_selectplayercount_selectplayercount_removeplayer",
+      "function_selectplayercount_selectplayercount_start",
+      "function_selectplayercount_selectplayercount_updatebtnimage"
+    ],
+    "11": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_userbtncontroller_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_userbtncontroller_cs_button",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_userbtncontroller_cs_gamemanager",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_userbtncontroller_cs_gameobject",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_manager_userbtncontroller_cs_switchscene",
+      "manager_userbtncontroller_manager",
+      "manager_userbtncontroller_userbtncontroller",
+      "manager_userbtncontroller_userbtncontroller_awake",
+      "manager_userbtncontroller_userbtncontroller_goarscene",
+      "manager_userbtncontroller_userbtncontroller_openspin",
+      "manager_userbtncontroller_userbtncontroller_scancardbtn",
+      "manager_userbtncontroller_userbtncontroller_start"
+    ],
+    "12": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_scene_switchscene_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_scene_switchscene_cs_canvasgroup",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_scene_switchscene_cs_float",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_scene_switchscene_cs_ienumerator",
+      "scene_switchscene_switchscene",
+      "scene_switchscene_switchscene_awake",
+      "scene_switchscene_switchscene_fadein",
+      "scene_switchscene_switchscene_fadeout",
+      "scene_switchscene_switchscene_fadeoutinscenes",
+      "scene_switchscene_switchscene_loadfadeoutinscenes",
+      "scene_switchscene_switchscene_loadscenes"
+    ],
+    "13": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_menu_titleblink_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_menu_titleblink_cs_bool",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_menu_titleblink_cs_float",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_menu_titleblink_cs_ienumerator",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_menu_titleblink_cs_tmp_text",
+      "menu_titleblink_menu",
+      "menu_titleblink_titleblink",
+      "menu_titleblink_titleblink_fadetext",
+      "menu_titleblink_titleblink_start",
+      "menu_titleblink_titleblink_toggletextvisibility"
+    ],
+    "14": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_teachpanelcontrol_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_teachpanelcontrol_cs_image",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_teachpanelcontrol_cs_int",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_ui_teachpanelcontrol_cs_sprite",
+      "ui_teachpanelcontrol_teachpanelcontrol",
+      "ui_teachpanelcontrol_teachpanelcontrol_nextimage",
+      "ui_teachpanelcontrol_teachpanelcontrol_previousimage",
+      "ui_teachpanelcontrol_teachpanelcontrol_start",
+      "ui_teachpanelcontrol_teachpanelcontrol_updatebtnimage"
+    ],
+    "15": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_data_playerdata_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_data_playerdata_cs_bool",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_data_playerdata_cs_int",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_data_playerdata_cs_sprite",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_data_playerdata_cs_string",
+      "data_playerdata_playerdata"
+    ],
+    "16": [
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_data_gamedata_cs",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_data_gamedata_cs_bool",
+      "c_users_jerry_onedrive_documents_github_babycaregame_assets_scripts_game_data_gamedata_cs_int",
+      "data_gamedata_gamedata"
+    ]
+  },
+  "cohesion": {
+    "0": 0.09333333333333334,
+    "1": 0.10666666666666667,
+    "2": 0.08695652173913043,
+    "3": 0.15263157894736842,
+    "4": 0.12280701754385964,
+    "5": 0.18095238095238095,
+    "6": 0.17142857142857143,
+    "7": 0.14285714285714285,
+    "8": 0.19230769230769232,
+    "9": 0.15384615384615385,
+    "10": 0.21212121212121213,
+    "11": 0.18181818181818182,
+    "12": 0.34545454545454546,
+    "13": 0.2222222222222222,
+    "14": 0.3055555555555556,
+    "15": 0.3333333333333333,
+    "16": 0.5
+  },
+  "gods": [
+    {
+      "id": "manager_gamemanager_gamemanager",
+      "label": "GameManager",
+      "degree": 24
+    },
+    {
+      "id": "ar_imagetracking_imagetrackingcontroller_imagetrackingcontroller",
+      "label": "ImageTrackingController",
+      "degree": 23
+    },
+    {
+      "id": "manager_playeruimanager_playeruimanager",
+      "label": "PlayerUIManager",
+      "degree": 16
+    },
+    {
+      "id": "game_spinfatemanager_spinfatemanager",
+      "label": "SpinFateManager",
+      "degree": 16
+    },
+    {
+      "id": "ar_imagetracking_arcardmanager_arcardmanager",
+      "label": "ARCardManager",
+      "degree": 14
+    },
+    {
+      "id": "manager_transitionmanager_transitionmanager",
+      "label": "TransitionManager",
+      "degree": 13
+    },
+    {
+      "id": "function_selectgameunit_selectgameunit",
+      "label": "SelectGameUnit",
+      "degree": 12
+    },
+    {
+      "id": "function_selectplayercount_selectplayercount",
+      "label": "SelectPlayerCount",
+      "degree": 11
+    },
+    {
+      "id": "manager_userbtncontroller_userbtncontroller",
+      "label": "UserBtnController",
+      "degree": 11
+    },
+    {
+      "id": "ui_gameresultdisplay_gameresultdisplay",
+      "label": "GameResultDisplay",
+      "degree": 11
+    }
+  ],
+  "surprises": [
+    {
+      "source": "ARCardManager",
+      "target": "MonoBehaviour",
+      "source_files": [
+        "C:/Users/jerry/OneDrive/Documents/GitHub/BabyCareGame/Assets/Scripts/AR ImageTracking/ARCardManager.cs",
+        ""
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "note": "Bridges community 6 → community 2"
+    },
+    {
+      "source": "ImageTrackingController",
+      "target": "MonoBehaviour",
+      "source_files": [
+        "C:/Users/jerry/OneDrive/Documents/GitHub/BabyCareGame/Assets/Scripts/AR ImageTracking/ImageTrackingController.cs",
+        ""
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "note": "Bridges community 2 → community 0"
+    },
+    {
+      "source": "SelectGameUnit",
+      "target": "MonoBehaviour",
+      "source_files": [
+        "C:/Users/jerry/OneDrive/Documents/GitHub/BabyCareGame/Assets/Scripts/Game/Function/SelectGameUnit.cs",
+        ""
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "note": "Bridges community 2 → community 8"
+    },
+    {
+      "source": "SelectPlayerCount",
+      "target": "MonoBehaviour",
+      "source_files": [
+        "C:/Users/jerry/OneDrive/Documents/GitHub/BabyCareGame/Assets/Scripts/Game/Function/SelectPlayerCount.cs",
+        ""
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "note": "Bridges community 2 → community 10"
+    },
+    {
+      "source": "SpinFateManager",
+      "target": "MonoBehaviour",
+      "source_files": [
+        "C:/Users/jerry/OneDrive/Documents/GitHub/BabyCareGame/Assets/Scripts/Game/SpinFateManager.cs",
+        ""
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "note": "Bridges community 2 → community 3"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `ImageTrackingController` connect `AR 圖像追蹤` to `共用 Unity 型別`?",
+      "why": "High betweenness centrality (0.178) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `GameManager` connect `遊戲核心管理` to `共用 Unity 型別`?",
+      "why": "High betweenness centrality (0.178) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `SpinFateManager` connect `命運轉盤系統` to `共用 Unity 型別`?",
+      "why": "High betweenness centrality (0.142) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `GameManager`, `ImageTrackingController`, `GameObject` to the rest of the system?",
+      "why": "98 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `AR 圖像追蹤` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09333333333333334 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `遊戲核心管理` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10666666666666667 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `共用 Unity 型別` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08695652173913043 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

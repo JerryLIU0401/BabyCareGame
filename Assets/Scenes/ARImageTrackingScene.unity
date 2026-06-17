@@ -1224,9 +1224,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedImageManager: {fileID: 1090629872}
   imageLibraries:
-  - {fileID: 11400000, guid: ad43dffdd81ecc744ac2d3bf72977b83, type: 2}
+  - {fileID: 11400000, guid: 39b33f4d1bb91a64db1bcdc20763de13, type: 2}
+  - {fileID: 11400000, guid: 7157e7328dae388438cd592d2b33ea0d, type: 2}
   prefabs:
-  - {fileID: 858302159338487890, guid: b471dc4dbbf5b9f4ea01e18a61c63f70, type: 3}
+  - {fileID: 5363458774252471724, guid: 745ccfd0178e0ba498997813a08b5e64, type: 3}
+  - {fileID: 2697352106179084997, guid: 5e3e091d79162214db08c0a15e31ddcd, type: 3}
   checkInterval: 1
   searchText: {fileID: 573196938}
   useBtnGameObject: {fileID: 869331084}
@@ -1242,7 +1244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SerializedLibrary: {fileID: 11400000, guid: 70035a4ef278e43f3babf5505214b0ae,
+  m_SerializedLibrary: {fileID: 11400000, guid: 6aff2ee4c79f04c8db1bfb24612df915,
     type: 2}
   m_MaxNumberOfMovingImages: 1
   m_TrackedImagePrefab: {fileID: 0}

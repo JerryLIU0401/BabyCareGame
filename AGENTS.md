@@ -42,6 +42,9 @@
 - `Assets/Prefabs`：主要遊戲 Prefab，包含 UI、Game、AR、Spin、Building、Model。
 - `Assets/prefab`：小寫目錄，包含另一批既有 Prefab，修改前需先確認其用途與場景引用。
 - `Assets/ImageLibrary`：AR Reference Image Library 與卡牌辨識資料。
+- `Assets/Wiki`：工程文件與 graphify 程式碼圖譜輸出位置，實際圖譜位於 `Assets/Wiki/graphify-out`。
+- `Assets/Reference`：新企劃、玩法規格與需求比對的主要依據，目前包含《哈姆的健康生活》AR 版說明書。
+- `Assets/Old`：舊有資產保存區，僅可作為新版 `ImageLibrary` 的 Unity 資料格式、命名方式與目錄結構參考。
 - `Assets/XR`：ARCore、ARKit、XR Simulation 與 XR Loader 設定。
 - `Assets/URP`：URP 管線設定與 Unity 範例資訊。
 - `ContentPackages`：XR Simulation 本機套件來源。
@@ -54,7 +57,26 @@
 - 不要直接修改自動產生的 `.csproj`、`.sln`，除非需求明確要求處理 IDE/專案檔。
 - 不要刪除或忽略 `.meta` 檔，Unity GUID 依賴 `.meta` 維持場景、Prefab 與資源引用。
 - 不要隨意修改 `Assets/UnityXRContent`、`Assets/Package/M Studio`、`Assets/URP/TutorialInfo` 等第三方或 Unity 範例內容。
+- 不要直接搬移、覆蓋、復用或刪除 `Assets/Old` 內的舊資產，除非需求明確指定；該目錄不是新企劃的功能或美術來源。
+- 不要把 `Assets/Old` 的舊版卡牌、UI 或 ImageLibrary 視為現行玩法需求；若需參考，只能用於理解 Unity `XRReferenceImageLibrary` 資產格式與舊資料組織方式。
 - 若工作樹已有使用者變更，必須保留並避開不相關檔案，不得重置或覆蓋。
+
+## 4.1 企劃文件與需求比對
+
+- `Assets/Reference/《哈姆的健康生活》說明書AR版.pdf` 是目前新企劃的主要玩法依據。
+- 修改遊戲規則、卡牌流程、玩家人數、勝利條件、AR 掃描流程或 UI 流程前，必須先比對 `Assets/Reference` 內的企劃規格。
+- 撰寫 Wiki 或工程文件時，需區分「目前腳本已實作」、「企劃要求」、「差異與待補」三種狀態。
+- 若腳本邏輯與企劃文件衝突，不得直接推定任一方正確；需在修改計畫中列出差異並等待確認。
+- 目前已知企劃重點包含 2-4 人遊玩、20 分鐘倒數、情境卡與步驟卡配對、功能卡與命運卡效果、完成情境後掃描 AR 動畫、依玩家人數不同的勝利分數。
+- `Assets/Old/ImageLibrary` 可用來參考新版 ImageLibrary 的 Unity 資產格式，但新版卡牌內容、辨識圖、分數與流程仍需以 `Assets/Reference` 的新企劃為準。
+
+## 4.2 程式碼圖譜
+
+- `Assets/Scripts` 的 graphify 圖譜實際位置為 `Assets/Wiki/graphify-out`。
+- 互動式圖譜入口為 `Assets/Wiki/graphify-out/graph.html`，可直接用瀏覽器開啟。
+- 原始圖資料為 `Assets/Wiki/graphify-out/graph.json`，可供 graphify 查詢與其他工具讀取。
+- 圖譜稽核報告為 `Assets/Wiki/graphify-out/GRAPH_REPORT.md`，用於快速檢視核心節點、社群與建議問題。
+- agent 可讀 wiki 入口為 `Assets/Wiki/graphify-out/wiki/index.md`，後續分析程式碼關係時應優先查閱此目錄。
 
 ## 5. 核心遊戲流程
 
@@ -131,4 +153,3 @@
 - 不要為了消除警告而擅自修改使用者全域 Git 設定。
 - `.gitignore` 已忽略 Unity 產生目錄、Build 輸出、IDE 快取與自動產生專案檔。
 - 若需要新增大型二進位資源，需先確認是否應納入版本控制與 Unity `.meta` 是否同步產生。
-

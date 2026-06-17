@@ -152,7 +152,19 @@ public class ImageTrackingController : MonoBehaviour
 
     private void HandleTrackedImage(ARTrackedImage trackedImage)
     {
+        Debug.Log($"referenceImage name: {trackedImage.referenceImage.name}");
+        Debug.Log($"referenceImage guid: {trackedImage.referenceImage.guid}");
+        Debug.Log($"trackingState: {trackedImage.trackingState}");
+        
         string imageName = trackedImage.referenceImage.name;
+        
+        if (string.IsNullOrEmpty(imageName))
+        {
+            Debug.LogError("❌ Reference Image 名稱為空，無法用名稱對應 Prefab。請檢查 XRReferenceImageLibrary 的 Image Name 是否正確帶入。");
+            return;
+        }
+
+        
         currentImageName = imageName;
 
         if (!prefabDictionary.TryGetValue(imageName, out GameObject prefab))
