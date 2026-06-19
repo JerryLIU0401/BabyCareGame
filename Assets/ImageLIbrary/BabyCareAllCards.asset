@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: BabyCareAllCards
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4777170610220416674
+  m_GuidHigh: 8651913746155393449
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5708856147823243350
+      m_GuidHigh: 17124054534003734695
+    m_SerializedTextureGuid:
+      m_GuidLow: 415593886134615695
+      m_GuidHigh: 9850157980063835673
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: sprain
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5686401840398879136
+      m_GuidHigh: 5716776383016153023
+    m_SerializedTextureGuid:
+      m_GuidLow: 50935257457997311
+      m_GuidHigh: 11679752635548473611
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: sprain_C
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5324146992839709127
+      m_GuidHigh: 14001939476497704863
+    m_SerializedTextureGuid:
+      m_GuidLow: 3734739392344276562
+      m_GuidHigh: 3480294331309400360
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: sprain_E
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5656943596033732708
+      m_GuidHigh: 3644756320561638571
+    m_SerializedTextureGuid:
+      m_GuidLow: 5049724270258303525
+      m_GuidHigh: 2154542135432850026
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: sprain_I
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5677027504016863300
+      m_GuidHigh: 10312578288966407831
+    m_SerializedTextureGuid:
+      m_GuidLow: 18060641840178621211
+      m_GuidHigh: 5065659509653289258
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: sprain_R
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5202486031156050665
+      m_GuidHigh: 14581440548377740161
+    m_SerializedTextureGuid:
+      m_GuidLow: 366139745625043188
+      m_GuidHigh: 11627962587839364874
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: 3010
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4787680957820595690
+      m_GuidHigh: 7424167175640301755
+    m_SerializedTextureGuid:
+      m_GuidLow: 17227436644213058180
+      m_GuidHigh: 3213035150837133577
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: eyesProtect
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5329858439068791430
+      m_GuidHigh: 17504630877184784797
+    m_SerializedTextureGuid:
+      m_GuidLow: 18051789167158333718
+      m_GuidHigh: 8357990710312022763
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: outside
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4703196682535606341
+      m_GuidHigh: 3999189123726681239
+    m_SerializedTextureGuid:
+      m_GuidLow: 9413737315718070537
+      m_GuidHigh: 11695761965799484025
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: abrasions
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5007003337823628776
+      m_GuidHigh: 15822988022492910486
+    m_SerializedTextureGuid:
+      m_GuidLow: 11616019944597502238
+      m_GuidHigh: 6310656234280817464
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: bites
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5002443941053430251
+      m_GuidHigh: 17774982594657792951
+    m_SerializedTextureGuid:
+      m_GuidLow: 14732449296252303211
+      m_GuidHigh: 2645714506131870027
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: choking
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5307972406414107271
+      m_GuidHigh: 6087584447922438325
+    m_SerializedTextureGuid:
+      m_GuidLow: 1744026229036033473
+      m_GuidHigh: 5769639475318533066
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: handwashing
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5121865675298841246
+      m_GuidHigh: 2904427425566124182
+    m_SerializedTextureGuid:
+      m_GuidLow: 10634372678220842501
+      m_GuidHigh: 6246918298004202889
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: heatstroke
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5554583944385218353
+      m_GuidHigh: 5739598196443327125
+    m_SerializedTextureGuid:
+      m_GuidLow: 10166005306897255890
+      m_GuidHigh: 9414144632038995963
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: nosebleed
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5597731127784409644
+      m_GuidHigh: 4416659558494684834
+    m_SerializedTextureGuid:
+      m_GuidLow: 4702931200288612565
+      m_GuidHigh: 7384988759811306232
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: preventingColds
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4783789957109375275
+      m_GuidHigh: 711749568557031608
+    m_SerializedTextureGuid:
+      m_GuidLow: 13534576066308143414
+      m_GuidHigh: 13872533538547138266
+    m_Size: {x: 0.055, y: 0.08754298}
+    m_SpecifySize: 1
+    m_Name: scald
+    m_Texture: {fileID: 2800000, guid: 19ccf9367939bbd4da7ecbe3c02385c0, type: 3}

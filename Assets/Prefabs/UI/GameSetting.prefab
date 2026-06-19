@@ -336,8 +336,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units:
-  - "\u958B\u555F"
   - "\u95DC\u9589"
+  - "\u958B\u555F"
   unitText: {fileID: 4631565786373578688}
   rightBtnImage: {fileID: 6127598142970372519}
   leftBtnImage: {fileID: 7707203811298753746}

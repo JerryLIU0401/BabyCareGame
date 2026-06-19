@@ -1226,22 +1226,7 @@ MonoBehaviour:
   arSession: {fileID: 1236672173}
   trackedImageManager: {fileID: 1090629872}
   imageLibraries:
-  - {fileID: 11400000, guid: 7157e7328dae388438cd592d2b33ea0d, type: 2}
-  - {fileID: 11400000, guid: 0188426805794fd4995cbee4bf391edd, type: 2}
-  - {fileID: 11400000, guid: d83fba361c3153c46838f4aca95c2b35, type: 2}
-  - {fileID: 11400000, guid: be52dc24a20a4134eafb49b9b77c01ee, type: 2}
-  - {fileID: 11400000, guid: d5adacf3f4eb3444086b37a1a4e83560, type: 2}
-  - {fileID: 11400000, guid: 2f1eec0dce383a74698e7ee6d5d89433, type: 2}
-  - {fileID: 11400000, guid: 3c97ab48919efda46ab8dfadbf2bbcbe, type: 2}
-  - {fileID: 11400000, guid: 6eaa67bb1d08a434bb09914e3bbdf0ee, type: 2}
-  - {fileID: 11400000, guid: 6a6996d9d7f00e34a8911e68fc20d27f, type: 2}
-  - {fileID: 11400000, guid: 8990e7b525f6e5241b7578d8c4f78466, type: 2}
-  - {fileID: 11400000, guid: 6b177dc6952c30b40b95afdc62e22bf6, type: 2}
-  - {fileID: 11400000, guid: 6ae5b55223a20a144881fca9eb161983, type: 2}
-  - {fileID: 11400000, guid: ad43dffdd81ecc744ac2d3bf72977b83, type: 2}
-  - {fileID: 11400000, guid: 92d6ffd864115294f92e2ee5dd46d014, type: 2}
-  - {fileID: 11400000, guid: 98fb04a03c4ec9e4a9633cda79d20f85, type: 2}
-  - {fileID: 11400000, guid: 39b33f4d1bb91a64db1bcdc20763de13, type: 2}
+  - {fileID: 11400000, guid: 4d57497a4fc74809b09420c89a6a6294, type: 2}
   prefabs:
   - {fileID: 5363458774252471724, guid: 745ccfd0178e0ba498997813a08b5e64, type: 3}
   - {fileID: 2697352106179084997, guid: 5e3e091d79162214db08c0a15e31ddcd, type: 3}
@@ -1260,9 +1245,9 @@ MonoBehaviour:
   - {fileID: 7818684462837167415, guid: 0519f9393e6b60f4190669e03582dde3, type: 3}
   - {fileID: 3854131653994568003, guid: b342ac40adca27d4eb05f74216461627, type: 3}
   checkInterval: 3
-  resetStabilizeSeconds: 0.75
+  resetStabilizeSeconds: 1
   autoSwitchResumeDelay: 1
-  librarySwitchDelay: 0.2
+  librarySwitchDelay: 1
   mobileCheckInterval: 0.6
   mobileLibrarySwitchDelay: 0.05
   mobileAutoSwitchResumeDelay: 0.15
@@ -1282,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SerializedLibrary: {fileID: 11400000, guid: 6aff2ee4c79f04c8db1bfb24612df915,
+  m_SerializedLibrary: {fileID: 11400000, guid: 4d57497a4fc74809b09420c89a6a6294,
     type: 2}
   m_MaxNumberOfMovingImages: 1
   m_TrackedImagePrefab: {fileID: 0}

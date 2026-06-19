@@ -11,7 +11,7 @@ public class GameData
     public bool isSetting = false;
     
     //教學關卡是否需要
-    public bool isTech = true;
+    public bool isTech = false;
     
     //玩家人數
     public int playerCount;
