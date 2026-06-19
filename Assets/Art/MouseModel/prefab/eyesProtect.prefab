@@ -126,7 +126,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7d132cfffdae7547b4fb3d239a236e1,
         type: 3}
       propertyPath: m_Name
-      value: glasses
+      value: eyesProtect
       objectReference: {fileID: 0}
     - target: {fileID: 923442180120632145, guid: d7d132cfffdae7547b4fb3d239a236e1,
         type: 3}
@@ -204,5 +204,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelName: eyesProtect
   modelType: 0
-  score: 0
+  score: 2
   specialEffect: 

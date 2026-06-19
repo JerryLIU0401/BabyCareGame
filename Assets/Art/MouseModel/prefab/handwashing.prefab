@@ -9721,7 +9721,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4ccb1021b9281154693d08fe5c0adab5,
         type: 3}
       propertyPath: m_Name
-      value: 'wash '
+      value: handwashing
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9797,5 +9797,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelName: handwashing
   modelType: 0
-  score: 0
+  score: 7
   specialEffect: 

@@ -162,5 +162,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelName: abrasions
   modelType: 0
-  score: 0
+  score: 4
   specialEffect: 

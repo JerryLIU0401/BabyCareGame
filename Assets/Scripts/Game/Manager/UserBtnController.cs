@@ -7,8 +7,9 @@ using UnityEngine.UI;
 
 namespace Manager
 {
-    //用來控制玩家遊玩時的按鈕設定，包含掃描卡片以及丟棄卡片所需要執行的內容
-
+    /// <summary>
+    /// 控制遊戲中玩家操作按鈕，包含轉盤、掃描卡片與結算入口。
+    /// </summary>
     public class UserBtnController : MonoBehaviour
     {
         private GameManager gameManager;
@@ -73,7 +74,9 @@ namespace Manager
             print("開啟轉盤");
         }
         
-        //掃卡片按鈕設定
+        /// <summary>
+        /// 處理掃描卡片按鈕，並在切換 AR 場景前暫停遊戲倒數。
+        /// </summary>
         public void ScanCardBtn()
         {
             GameData btnGameData = gameManager.GetGameData();
@@ -87,13 +90,18 @@ namespace Manager
             scanButton.GetComponent<Button>().enabled = false;
             print("掃描卡片");
             gameManager.UpdateGameData(btnGameData);
+            // 掃描期間不應扣除局內時間，因此切場景前先由 GameManager 保存目前倒數狀態。
+            gameManager.PauseGameTimerForScan();
             GoARScene();
         }
      
         
-        //移動到AR場景
+        /// <summary>
+        /// 載入 AR 掃描場景。
+        /// </summary>
         private void GoARScene()
         {
+            // 透過共用轉場流程進入 AR，讓返回 Game 時仍可由 GameManager 接續倒數狀態。
             SwitchScene switchScenes = Instantiate(switchScenePrefab);
             switchScenes.StartCoroutine(switchScenes.loadFadeOutInScenes("ARImageTrackingScene"));
         }

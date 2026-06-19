@@ -37,6 +37,16 @@ namespace UI
         private bool hasExpired;
 
         /// <summary>
+        /// 取得本局倒數是否已經啟動，供跨場景流程判斷是否需要保存時間。
+        /// </summary>
+        public bool HasStarted => hasStarted;
+
+        /// <summary>
+        /// 取得本局倒數是否已經歸零，供回到 Game 場景時避免重複恢復已結束的時間。
+        /// </summary>
+        public bool HasExpired => hasExpired;
+
+        /// <summary>
         /// 初始化文字顯示，讓玩家在倒數開始前仍能看到預設遊戲時間。
         /// </summary>
         private void Awake()
@@ -92,6 +102,48 @@ namespace UI
                 // 支援測試時把時間設為 0 秒，仍能走完整時間到流程。
                 TriggerTimerExpired();
             }
+        }
+
+        /// <summary>
+        /// 暫停目前倒數，讓 AR 掃描期間不消耗遊戲時間。
+        /// </summary>
+        /// <returns>回傳暫停當下剩餘秒數，提供跨場景管理者保存。</returns>
+        public float PauseTimer()
+        {
+            // 掃描流程只需要暫停倒數，不應重置 hasStarted，否則回到 Game 會被誤判成新局。
+            isRunning = false;
+            UpdateTimerText();
+            return GetRemainingSeconds();
+        }
+
+        /// <summary>
+        /// 以指定剩餘秒數恢復倒數，供 Game 場景重新載入後接續原本時間。
+        /// </summary>
+        /// <param name="seconds">要恢復的剩餘秒數，型別為 float。</param>
+        public void ResumeTimer(float seconds)
+        {
+            // 切回 Game 會生成新的場景 UI，因此必須用 GameManager 保存的秒數覆寫預設初始時間。
+            remainingSeconds = Mathf.Max(seconds, 0f);
+            hasStarted = true;
+            hasExpired = false;
+            isRunning = remainingSeconds > 0f;
+            UpdateTimerText();
+
+            if (remainingSeconds <= 0f)
+            {
+                // 若剛好在切場景邊界歸零，仍需補送時間到事件，避免結算流程被跳過。
+                TriggerTimerExpired();
+            }
+        }
+
+        /// <summary>
+        /// 取得目前剩餘秒數。
+        /// </summary>
+        /// <returns>回傳不小於 0 的剩餘秒數，型別為 float。</returns>
+        public float GetRemainingSeconds()
+        {
+            // 對外只暴露已限制的秒數，避免跨場景保存到浮點扣減後的負值。
+            return Mathf.Max(remainingSeconds, 0f);
         }
 
         /// <summary>

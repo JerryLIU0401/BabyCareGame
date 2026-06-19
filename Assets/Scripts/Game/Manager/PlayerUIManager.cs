@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
 using Function.Select;
-using Player;
 using TMPro;
 using UI;
 using Unity.VisualScripting;
@@ -58,8 +57,7 @@ namespace Manager
             if (playerData.Count != 0)
             {
                 GameData gameData = gameManager.GetGameData();
-                PlayerController player = FindFirstObjectByType<PlayerController>();
-                player.EditPlayerScoreData(gameManager.GetPlayerData().score);
+                // 分數顯示統一由玩家區塊負責，避免舊版 PlayerController 誤寫到計時器文字。
                 GeneratePlayerUI(playerData);
                 DisplayCurrentPlayer(gameData);
             }

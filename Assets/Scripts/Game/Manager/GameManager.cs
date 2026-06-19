@@ -17,6 +17,9 @@ namespace Manager
     {
         // 時間歸零時顯示在共用過場面板上的訊息，集中管理避免多處硬編碼。
         private const string TimeUpTransitionMessage = "時間到，遊戲結算 ! ! !";
+
+        // 回到遊戲場景後需要接續倒數，集中保存場景名稱可避免掃描流程分散硬編碼。
+        private const string GameSceneName = "Game";
         
         private static GameManager instance;
         private SelectPlayerCount selectPlayerCount;
@@ -27,6 +30,15 @@ namespace Manager
 
         // 記錄目前場景中的計時器，讓跨場景保留的 GameManager 可以正確解除舊事件。
         private GameTimer activeGameTimer;
+
+        // 保存進入 AR 掃描前的剩餘時間，因為 GameTimer 會隨 Game 場景卸載而被銷毀。
+        private float pausedTimerRemainingSeconds;
+
+        // 標記目前是否因掃描流程暫停倒數，避免一般重新載入 Game 場景時誤啟動計時器。
+        private bool isTimerPausedForScan;
+
+        // 標記本局正式倒數是否已開始，讓尚未完成設定或教學的流程不會被場景載入事件啟動。
+        private bool hasStartedGameTimer;
 
         // 時間到流程只能執行一次，避免倒數與其他結算入口重複打開結算面板。
         private bool isTimeUpProcessing;
@@ -140,6 +152,14 @@ namespace Manager
         /// </summary>
         private void OnEnable()
         {
+            if (instance != this)
+            {
+                return;
+            }
+
+            // GameManager 跨場景保留，必須監聽新 Game 場景載入後重新連接場景內的計時器。
+            SceneManager.sceneLoaded -= HandleSceneLoaded;
+            SceneManager.sceneLoaded += HandleSceneLoaded;
             SubscribeSetupEvents();
         }
 
@@ -186,6 +206,8 @@ namespace Manager
         /// </summary>
         private void OnDisable()
         {
+            // 物件銷毀或回主選單時解除場景事件，避免舊 GameManager 在新局中恢復已失效的倒數狀態。
+            SceneManager.sceneLoaded -= HandleSceneLoaded;
             UnsubscribeSetupEvents();
 
             if (activeGameTimer != null)
@@ -194,6 +216,22 @@ namespace Manager
                 activeGameTimer.OnTimerExpired -= HandleGameTimerExpired;
                 activeGameTimer = null;
             }
+        }
+
+        /// <summary>
+        /// 處理 Unity 場景載入完成事件，讓掃描後返回 Game 時可以接續倒數。
+        /// </summary>
+        /// <param name="scene">剛載入完成的場景，型別為 Scene。</param>
+        /// <param name="loadSceneMode">場景載入模式，型別為 LoadSceneMode。</param>
+        private void HandleSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            if (scene.name != GameSceneName)
+            {
+                return;
+            }
+
+            // 只有掃描流程暫停過的局才恢復倒數，避免首次進入 Game 時跳過玩家設定流程。
+            ResumeTimerAfterScanIfNeeded();
         }
 
         /// <summary>
@@ -294,6 +332,17 @@ namespace Manager
 
         public void TriggerGameVictory()
         {
+            // 進入結算後不應再恢復掃描前倒數，否則結果面板可能被時間到流程再次觸發。
+            isTimeUpProcessing = true;
+            isTimerPausedForScan = false;
+            hasStartedGameTimer = false;
+
+            if (activeGameTimer != null && !activeGameTimer.HasExpired)
+            {
+                // 手動結算時也要停住倒數，避免背景倒數歸零後再次開啟結算流程。
+                activeGameTimer.PauseTimer();
+            }
+
             PlayerUIManager uiManager = FindFirstObjectByType<PlayerUIManager>();
             uiManager.OpenGameResultPanel();
                 
@@ -309,6 +358,12 @@ namespace Manager
             // 重新生成前先清空，避免重複累加
             playersData.Clear();
             gameData.Clear();
+
+            // 新局資料建立時清除上一局跨場景倒數狀態，避免返回 Game 時恢復到舊秒數。
+            pausedTimerRemainingSeconds = 0f;
+            isTimerPausedForScan = false;
+            hasStartedGameTimer = false;
+            isTimeUpProcessing = false;
 
             // 初始化 GameData：currentPlayer=0 代表尚未選擇任何玩家
             gameData.Add(new GameData(true, playerCount, 0));
@@ -398,15 +453,61 @@ namespace Manager
         /// </summary>
         public void StartGameTimerAfterSetup()
         {
+            if (!BindActiveGameTimer())
+            {
+                return;
+            }
+
+            // 正式開始新局倒數時清除掃描暫停旗標，避免舊局狀態干擾下一次設定流程。
+            isTimeUpProcessing = false;
+            isTimerPausedForScan = false;
+            activeGameTimer.StartTimer();
+            pausedTimerRemainingSeconds = activeGameTimer.GetRemainingSeconds();
+            hasStartedGameTimer = activeGameTimer.HasStarted;
+        }
+
+        /// <summary>
+        /// 在進入 AR 掃描場景前暫停目前遊戲倒數。
+        /// </summary>
+        public void PauseGameTimerForScan()
+        {
+            if (!hasStartedGameTimer || isTimeUpProcessing)
+            {
+                return;
+            }
+
+            if (!BindActiveGameTimer())
+            {
+                return;
+            }
+
+            if (!activeGameTimer.HasStarted || activeGameTimer.HasExpired)
+            {
+                // 已結束或尚未開始的計時器不應被標記為掃描暫停，避免回場景後重新啟動。
+                isTimerPausedForScan = false;
+                return;
+            }
+
+            // 掃描場景不應消耗局內時間，因此在切場景前先把剩餘秒數交給 GameManager 保存。
+            pausedTimerRemainingSeconds = activeGameTimer.PauseTimer();
+            isTimerPausedForScan = pausedTimerRemainingSeconds > 0f;
+        }
+
+        /// <summary>
+        /// 將目前場景中的 GameTimer 綁定到跨場景保留的 GameManager。
+        /// </summary>
+        /// <returns>若成功找到並綁定 GameTimer 則回傳 true；否則回傳 false。</returns>
+        private bool BindActiveGameTimer()
+        {
             // 計時器屬於 Game 場景 UI，使用查找可避免 GameManager 跨場景保留後持有失效引用。
             GameTimer gameTimer = FindFirstObjectByType<GameTimer>();
             if (gameTimer == null)
             {
                 Debug.LogWarning("[GameManager] 找不到 GameTimer，請確認 Game 場景的 Time 物件已掛載計時器。", this);
-                return;
+                return false;
             }
 
-            if (activeGameTimer != null)
+            if (activeGameTimer != null && activeGameTimer != gameTimer)
             {
                 // 重新綁定前先解除舊事件，避免同一個 GameManager 收到多次時間到通知。
                 activeGameTimer.OnTimerExpired -= HandleGameTimerExpired;
@@ -415,8 +516,27 @@ namespace Manager
             activeGameTimer = gameTimer;
             activeGameTimer.OnTimerExpired -= HandleGameTimerExpired;
             activeGameTimer.OnTimerExpired += HandleGameTimerExpired;
-            isTimeUpProcessing = false;
-            gameTimer.StartTimer();
+            return true;
+        }
+
+        /// <summary>
+        /// 掃描後返回 Game 場景時，將新場景計時器恢復到離開前的剩餘時間。
+        /// </summary>
+        private void ResumeTimerAfterScanIfNeeded()
+        {
+            if (!isTimerPausedForScan || !hasStartedGameTimer || isTimeUpProcessing)
+            {
+                return;
+            }
+
+            if (!BindActiveGameTimer())
+            {
+                return;
+            }
+
+            // 先清除旗標再恢復，避免 ResumeTimer 在零秒邊界觸發事件時被場景載入流程重入。
+            isTimerPausedForScan = false;
+            activeGameTimer.ResumeTimer(pausedTimerRemainingSeconds);
         }
 
         /// <summary>

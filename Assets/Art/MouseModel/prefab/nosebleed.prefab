@@ -101,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a7e8515e47cbdc94bb22861f41326b08,
         type: 3}
       propertyPath: m_Name
-      value: bleeding
+      value: nosebleed
       objectReference: {fileID: 0}
     - target: {fileID: 1412737773049405925, guid: a7e8515e47cbdc94bb22861f41326b08,
         type: 3}
@@ -213,5 +213,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelName: nosebleeding
   modelType: 0
-  score: 0
+  score: 3
   specialEffect: 

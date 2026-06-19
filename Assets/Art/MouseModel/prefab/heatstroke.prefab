@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelName: heatstroke
   modelType: 0
-  score: 0
+  score: 5
   specialEffect: 
 --- !u!4 &8451404709224612073 stripped
 Transform:
