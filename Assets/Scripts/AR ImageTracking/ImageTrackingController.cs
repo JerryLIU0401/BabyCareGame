@@ -33,7 +33,7 @@ public class ImageTrackingController : MonoBehaviour
     private Dictionary<string, GameObject> prefabDictionary = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> spawnedPrefabs = new Dictionary<string, GameObject>();
     private Dictionary<string, TrackingState> trackingStates = new Dictionary<string, TrackingState>();
-    private Vector3 scaleFactor = new Vector3(0.1f, 0.1f, 0.1f); // 可調整的縮放因子
+    private Vector3 scaleFactor = new Vector3(0.5f, 0.5f, 0.5f); // 可調整的縮放因子
     
     //暫存當前卡牌資訊，讓使用按鈕可以運作
     private string currentImageName = "";
