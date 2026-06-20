@@ -20,6 +20,9 @@ namespace Manager
 
         // 回到遊戲場景後需要接續倒數，集中保存場景名稱可避免掃描流程分散硬編碼。
         private const string GameSceneName = "Game";
+
+        // 分數勝利與時間到結算使用不同文字，讓玩家能清楚知道本次結束原因。
+        private const string ScoreVictoryTransitionMessage = "遊戲結束！！！";
         
         private static GameManager instance;
         private SelectPlayerCount selectPlayerCount;
@@ -43,11 +46,24 @@ namespace Manager
         // 時間到流程只能執行一次，避免倒數與其他結算入口重複打開結算面板。
         private bool isTimeUpProcessing;
 
+        // 分數達標時先暫存結算狀態，等 AR 流程回到 Game 場景後再播放過場與顯示結果。
+        private bool hasPendingScoreVictory;
+
         
         //----------------------Data---------------------------
         
         [SerializeField] private List<PlayerData> playersData = new List<PlayerData>();
         [SerializeField] private List<GameData> gameData = new List<GameData>();
+
+        //----------------------勝利條件---------------------------
+
+        [Header("勝利分數設定")]
+        // 2 人局的勝利門檻開放給 Inspector，方便現場測試時直接調整平衡。
+        [SerializeField, Min(1)] private int twoPlayerVictoryScore = 22;
+        // 3 人局獨立設定，避免不同玩家數共用同一數值造成遊戲時間失衡。
+        [SerializeField, Min(1)] private int threePlayerVictoryScore = 19;
+        // 4 人局通常回合等待較長，因此保留較低預設值並允許設計端微調。
+        [SerializeField, Min(1)] private int fourPlayerVictoryScore = 15;
 
    
         //----------------------Action----------------------------
@@ -230,6 +246,12 @@ namespace Manager
                 return;
             }
 
+            // 分數勝利必須優先於倒數恢復，避免達標後回到 Game 場景又繼續計時或觸發時間到結算。
+            if (PlayPendingScoreVictoryTransitionIfNeeded())
+            {
+                return;
+            }
+
             // 只有掃描流程暫停過的局才恢復倒數，避免首次進入 Game 時跳過玩家設定流程。
             ResumeTimerAfterScanIfNeeded();
         }
@@ -311,23 +333,109 @@ namespace Manager
             ChangePlayerUI?.Invoke(gameData[0]);
         }
 
-        // --------------------- 勝條件判斷 ----------------------------
-        //遊戲勝利判定
-        //將會在玩家按下結束回合時進行勝利判斷，然後顯示遊戲最終成績
+        /// <summary>
+        /// 判斷指定玩家是否達到目前玩家人數對應的勝利分數，並標記稍後結算。
+        /// </summary>
+        /// <param name="index">玩家在 playersData 中的 0-based 索引，型別為 int。</param>
+        /// <returns>若玩家已達到勝利分數則回傳 true；否則回傳 false。</returns>
         private bool GameVictory(int index)
         {
-            var player = playersData[index];
-            //寫入勝利條件
-            if (player.score >= 30 )
+            if (gameData == null || gameData.Count == 0)
             {
-                playersData[index].score = 30;
+                // 尚未建立遊戲資料時沒有玩家人數可判定，避免設定流程中誤觸結算。
+                return false;
+            }
+
+            if (playersData == null || index < 0 || index >= playersData.Count)
+            {
+                // 分數判定必須對應有效玩家，否則跨場景回來時可能因舊索引造成例外。
+                return false;
+            }
+
+            var player = playersData[index];
+            int victoryScore = GetVictoryScoreThreshold(gameData[0].playerCount);
+
+            if (victoryScore <= 0)
+            {
+                // 不支援的玩家人數不應套用任一門檻，避免錯誤設定直接判定勝利。
+                return false;
+            }
+
+            if (player.score >= victoryScore)
+            {
                 playersData[index].isWin = true;
-                TriggerGameVictory();
+                hasPendingScoreVictory = true;
+                isTimerPausedForScan = false;
+                hasStartedGameTimer = false;
+                isTimeUpProcessing = true;
+
+                if (activeGameTimer != null && !activeGameTimer.HasExpired)
+                {
+                    // 分數達標後本局已進入結算流程，先停住倒數避免等待過場時又觸發時間到。
+                    activeGameTimer.PauseTimer();
+                }
+
+                if (SceneManager.GetActiveScene().name == GameSceneName)
+                {
+                    // 若分數更新發生在 Game 場景，直接播放過場；AR 場景則等回到 Game 後再處理。
+                    PlayPendingScoreVictoryTransitionIfNeeded();
+                }
 
                 return true;
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// 依玩家人數取得 Inspector 中設定的勝利分數。
+        /// </summary>
+        /// <param name="playerCount">本局玩家人數，型別為 int。</param>
+        /// <returns>回傳該玩家人數的勝利分數；若人數不支援則回傳 0。</returns>
+        private int GetVictoryScoreThreshold(int playerCount)
+        {
+            switch (playerCount)
+            {
+                case 2:
+                    // 二人局節奏較長，因此保留獨立門檻讓設計端可從 Inspector 微調。
+                    return twoPlayerVictoryScore;
+                case 3:
+                    // 三人局門檻獨立保存，避免未來調平衡時需要改動程式碼。
+                    return threePlayerVictoryScore;
+                case 4:
+                    // 四人局回合等待時間較長，使用較低門檻並允許 Inspector 調整。
+                    return fourPlayerVictoryScore;
+                default:
+                    Debug.LogWarning($"[GameManager] 不支援的玩家人數勝利判定：{playerCount}", this);
+                    return 0;
+            }
+        }
+
+        /// <summary>
+        /// 在 Game 場景中播放分數勝利過場，並於動畫結束後開啟結算結果。
+        /// </summary>
+        /// <returns>若存在待處理的分數勝利流程則回傳 true；否則回傳 false。</returns>
+        private bool PlayPendingScoreVictoryTransitionIfNeeded()
+        {
+            if (!hasPendingScoreVictory)
+            {
+                return false;
+            }
+
+            hasPendingScoreVictory = false;
+
+            TransitionManager transitionManager = FindFirstObjectByType<TransitionManager>();
+            if (transitionManager == null)
+            {
+                // 缺少過場控制器時仍要完成結算，避免玩家達標後卡在無法操作的狀態。
+                Debug.LogWarning("[GameManager] 找不到 TransitionManager，將直接進入分數勝利結算畫面。", this);
+                TriggerGameVictory();
+                return true;
+            }
+
+            // 結算畫面等過場完整播放後再開啟，符合「先提示遊戲結束，再顯示結果」的流程。
+            transitionManager.ShowTransition(ScoreVictoryTransitionMessage, TriggerGameVictory);
+            return true;
         }
 
         public void TriggerGameVictory()
@@ -336,6 +444,7 @@ namespace Manager
             isTimeUpProcessing = true;
             isTimerPausedForScan = false;
             hasStartedGameTimer = false;
+            hasPendingScoreVictory = false;
 
             if (activeGameTimer != null && !activeGameTimer.HasExpired)
             {
@@ -364,6 +473,7 @@ namespace Manager
             isTimerPausedForScan = false;
             hasStartedGameTimer = false;
             isTimeUpProcessing = false;
+            hasPendingScoreVictory = false;
 
             // 初始化 GameData：currentPlayer=0 代表尚未選擇任何玩家
             gameData.Add(new GameData(true, playerCount, 0));
@@ -403,10 +513,30 @@ namespace Manager
             return playersData;
         }
 
-        //-----更新當前的玩家數據-----
+        /// <summary>
+        /// 更新目前玩家資料，並在分數達標時建立回到 Game 場景後的結算流程。
+        /// </summary>
+        /// <param name="currentPlayerData">目前玩家資料，型別為 PlayerData。</param>
         public void UpdatePlayerData(PlayerData currentPlayerData)
         {
-            playersData[gameData[0].currentPlayer-1] = currentPlayerData;
+            if (gameData == null || gameData.Count == 0 || gameData[0].currentPlayer <= 0)
+            {
+                // currentPlayer 等於 0 代表尚未選擇玩家，此時不得寫入或判定勝利。
+                Debug.LogWarning("[GameManager] 尚未選擇目前玩家，無法更新玩家資料。", this);
+                return;
+            }
+
+            int currentPlayerIndex = gameData[0].currentPlayer - 1;
+            if (playersData == null || currentPlayerIndex < 0 || currentPlayerIndex >= playersData.Count)
+            {
+                // 跨場景流程若資料不同步，先阻止寫入避免破壞玩家清單順序。
+                Debug.LogWarning($"[GameManager] 目前玩家索引超出資料範圍：{currentPlayerIndex}", this);
+                return;
+            }
+
+            // 使用前面驗證過的索引寫回，避免 currentPlayer 在同一方法內被重複換算造成維護風險。
+            playersData[currentPlayerIndex] = currentPlayerData;
+            GameVictory(currentPlayerIndex);
         }
         //-----更新當前所有的玩家數據-----
         public void UpdateAllPlayerData(List<PlayerData> currentPlayerDatas)
