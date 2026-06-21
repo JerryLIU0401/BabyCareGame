@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f622ef9c4e28eb444832f5f1857670db,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.47026
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f622ef9c4e28eb444832f5f1857670db,
         type: 3}
@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f622ef9c4e28eb444832f5f1857670db,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.31457
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f622ef9c4e28eb444832f5f1857670db,
         type: 3}
@@ -217,7 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a100426b087d444ce9390a306d78e490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelName: 
+  modelName: outside
+  chineseDisplayName: "\u6236\u5916"
   modelType: 0
   score: 2
   specialEffect: 

@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 953778965130704525}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0.000000016108967, z: 0.000000089406946, w: 0.7071067}
-  m_LocalPosition: {x: 0.857, y: -1.2, z: -0.347}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0088, y: -0.0109, z: -0.0026}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2270480877374626867}
@@ -4857,9 +4857,9 @@ Transform:
   m_GameObject: {fileID: 3230792490995200050}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.88, y: -2.28, z: -0.02}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.0178, y: -0.0233, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2108501346677170156}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -4946,14 +4946,14 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
-      minScalar: 0.4
+      scalar: 0.15
+      minScalar: 0.09
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 1
+          time: 0.022302156
+          value: 0.94777685
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4961,8 +4961,17 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
+          time: 0.49975407
+          value: 0.99504215
+          inSlope: -0.36106405
+          outSlope: -0.36106405
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.98986816
+          value: 0.71111107
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -5700,7 +5709,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 400
+      scalar: 600
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9671,7 +9680,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4ccb1021b9281154693d08fe5c0adab5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ccb1021b9281154693d08fe5c0adab5,
         type: 3}
@@ -9681,7 +9690,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4ccb1021b9281154693d08fe5c0adab5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.84337
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ccb1021b9281154693d08fe5c0adab5,
         type: 3}
@@ -9796,6 +9805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelName: handwashing
+  chineseDisplayName: "\u6D17\u624B"
   modelType: 0
   score: 7
   specialEffect: 

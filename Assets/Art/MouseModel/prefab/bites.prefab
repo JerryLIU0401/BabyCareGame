@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelName: bites
+  chineseDisplayName: "\u53EE\u54AC"
   modelType: 0
   score: 4
   specialEffect: 

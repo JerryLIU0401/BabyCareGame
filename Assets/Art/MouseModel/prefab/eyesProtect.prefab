@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelName: eyesProtect
+  chineseDisplayName: "\u8B77\u773C\u775B"
   modelType: 0
   score: 2
   specialEffect: 

@@ -45,8 +45,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.12248605, b: 0, a: 1}
-  m_Intensity: 50000
-  m_Range: 15.733779
+  m_Intensity: 3
+  m_Range: 0.2
   m_SpotAngle: 59.468388
   m_InnerSpotAngle: 47.10118
   m_CookieSize: 10
@@ -134,7 +134,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 60bc26b47d497a84293255a344c452a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.457
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 60bc26b47d497a84293255a344c452a6,
         type: 3}
@@ -144,7 +144,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 60bc26b47d497a84293255a344c452a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 60bc26b47d497a84293255a344c452a6,
         type: 3}
@@ -274,7 +274,12 @@ PrefabInstance:
     - target: {fileID: 4518980002003577502, guid: 60bc26b47d497a84293255a344c452a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.9
+      value: -0.076
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518980002003577502, guid: 60bc26b47d497a84293255a344c452a6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.182
       objectReference: {fileID: 0}
     - target: {fileID: 4579403500916234455, guid: 60bc26b47d497a84293255a344c452a6,
         type: 3}
@@ -328,6 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelName: heatstroke
+  chineseDisplayName: "\u4E2D\u6691"
   modelType: 0
   score: 5
   specialEffect: 

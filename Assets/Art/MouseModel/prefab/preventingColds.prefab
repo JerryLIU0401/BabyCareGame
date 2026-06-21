@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelName: preventingColds
+  chineseDisplayName: "\u9810\u9632\u611F\u5192"
   modelType: 0
   score: 4
   specialEffect: 

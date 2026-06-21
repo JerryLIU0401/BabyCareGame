@@ -106,7 +106,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: abrasions
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 68370109503682a479aa00858ab14fa2, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5007003337823628776
       m_GuidHigh: 15822988022492910486
@@ -126,7 +126,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: choking
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 3e92776b2c94cc744b9116635377b724, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5307972406414107271
       m_GuidHigh: 6087584447922438325

@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelName: abrasions
+  chineseDisplayName: "\u64E6\u50B7"
   modelType: 0
   score: 4
   specialEffect: 

@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelName: sprain
+  chineseDisplayName: "\u626D\u50B7"
   modelType: 0
   score: 4
   specialEffect: 

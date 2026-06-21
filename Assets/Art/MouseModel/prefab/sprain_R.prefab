@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 927dce2b107e32940b9de20b03f8b21e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.32467
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 927dce2b107e32940b9de20b03f8b21e,
         type: 3}
@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 927dce2b107e32940b9de20b03f8b21e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 34.36899
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 927dce2b107e32940b9de20b03f8b21e,
         type: 3}
@@ -146,7 +146,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 927dce2b107e32940b9de20b03f8b21e,
         type: 3}
       propertyPath: m_Name
-      value: rest
+      value: sprain_R
       objectReference: {fileID: 0}
     - target: {fileID: 1761696836151554071, guid: 927dce2b107e32940b9de20b03f8b21e,
         type: 3}
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelName: sprain_R
+  chineseDisplayName: "\u4F11\u606F"
   modelType: 0
   score: 0
   specialEffect: 

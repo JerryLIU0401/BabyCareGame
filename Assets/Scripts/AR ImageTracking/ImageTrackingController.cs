@@ -788,7 +788,7 @@ public class ImageTrackingController : MonoBehaviour
     {
         model.transform.SetParent(trackedImage.transform, false);
         model.transform.localPosition = Vector3.zero;
-        model.transform.localRotation = Quaternion.identity;
+        model.transform.localRotation = Quaternion.Euler(model.transform.localRotation.eulerAngles.x, 180f, model.transform.localRotation.eulerAngles.z);
         model.transform.localScale = scaleFactor;
         model.SetActive(true);
     }
@@ -804,8 +804,38 @@ public class ImageTrackingController : MonoBehaviour
         hasDetectedCard = true;
         isAutoLibrarySwitchingEnabled = false;
         timeSinceLastDetection = 0f;
-        SetSearchText(imageName);
+        SetSearchText(GetCardDisplayName(imageName));
         UpdateDetectionButtons();
+    }
+
+    /// <summary>
+    /// 取得掃描成功後要顯示給玩家看的卡牌名稱。
+    /// </summary>
+    /// <param name="imageName">目前辨識到的 Reference Image 名稱，型別為 string。</param>
+    /// <returns>優先回傳中文顯示名稱；缺值時依序退回模型內部名稱與 Reference Image 名稱。</returns>
+    private string GetCardDisplayName(string imageName)
+    {
+        if (spawnedPrefabs.TryGetValue(imageName, out GameObject model))
+        {
+            ModelInfo modelInfo = model.GetComponent<ModelInfo>();
+            if (modelInfo != null)
+            {
+                // 玩家可見文字與 AR 對應鍵分離，避免把 Reference Image 名稱改成中文後破壞 Prefab 查找。
+                if (!string.IsNullOrWhiteSpace(modelInfo.chineseDisplayName))
+                {
+                    return modelInfo.chineseDisplayName;
+                }
+
+                // 舊 Prefab 可能尚未填中文欄位，因此保留 modelName 作為第一層相容退回值。
+                if (!string.IsNullOrWhiteSpace(modelInfo.modelName))
+                {
+                    return modelInfo.modelName;
+                }
+            }
+        }
+
+        // 最後退回 Reference Image 名稱，確保 Inspector 尚未補資料時 UI 仍有可辨識文字。
+        return imageName;
     }
 
     /// <summary>

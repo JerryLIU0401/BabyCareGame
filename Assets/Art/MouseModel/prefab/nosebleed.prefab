@@ -211,7 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a100426b087d444ce9390a306d78e490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelName: nosebleeding
+  modelName: nousebleed
+  chineseDisplayName: "\u6D41\u9F3B\u8840"
   modelType: 0
   score: 3
   specialEffect: 
