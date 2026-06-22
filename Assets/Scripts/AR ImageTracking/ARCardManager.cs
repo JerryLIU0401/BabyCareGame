@@ -40,8 +40,21 @@ public class ARCardManager : MonoBehaviour
    
     
     //-------------------卡牌辨識-----------------------
-    private void CardState( ModelInfo currentModelInfo )
+    /// <summary>
+    /// 接收玩家確認使用的卡牌資料，並依卡牌類型套用對應遊戲規則。
+    /// </summary>
+    /// <param name="currentModelInfo">目前被玩家確認使用的卡牌模型資訊，型別為 ModelInfo。</param>
+    private void CardState(ModelInfo currentModelInfo)
     {
+        if (currentModelInfo == null)
+        {
+            // 使用按鈕理論上只會在已有模型時出現，保留防護可避免 Prefab 缺 ModelInfo 時中斷 AR 流程。
+            Debug.LogWarning("[ARCardManager] 收到空的卡牌資料，略過使用流程。", this);
+            return;
+        }
+
+        // 確認使用音效由跨場景 AudioManager 播放，返回 Game 場景時仍能完整播完。
+        AudioManager.TryPlaySoundEffect(SoundEffect.Score);
         
         switch (currentModelInfo.modelType)
         {
@@ -53,7 +66,10 @@ public class ARCardManager : MonoBehaviour
     }
     
     
-    // 直接獲得點數卡的點數
+    /// <summary>
+    /// 依基礎分數卡更新目前玩家分數，並啟動返回 Game 場景流程。
+    /// </summary>
+    /// <param name="buildModelInfo">被玩家確認使用的分數卡資料，型別為 ModelInfo。</param>
     private void GetFoundationCardScore(ModelInfo buildModelInfo)
     {
         Debug.Log($"該點數卡獲得 {buildModelInfo.score} 分");

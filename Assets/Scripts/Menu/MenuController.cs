@@ -1,3 +1,4 @@
+using Manager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,15 @@ public class MenuController : MonoBehaviour
 
     // 防止玩家快速連點造成重複載入場景，避免 Start 到 Game 的轉場流程被觸發多次。
     private bool isLoading;
+
+    /// <summary>
+    /// 開始畫面啟用後播放背景音樂。
+    /// </summary>
+    private void Start()
+    {
+        // 回到開始畫面時會用開始畫面音樂取代結算音樂，讓新一局從正確聽覺狀態開始。
+        AudioManager.TryPlayMusic(AudioTrack.StartScene);
+    }
 
     /// <summary>
     /// 每幀偵測玩家是否已在開始畫面完成點擊。
@@ -55,6 +65,8 @@ public class MenuController : MonoBehaviour
     private void StartGame()
     {
         isLoading = true;
+        // 開始音效由跨場景 AudioManager 播放，確保淡出與載入 Game 場景時不會被中斷。
+        AudioManager.TryPlaySoundEffect(SoundEffect.StartGame);
 
         if (switchScenePrefab == null)
         {

@@ -129,6 +129,9 @@ namespace Manager
                 {
                     playerScoeText.text = $"{players[i].score}分";
                 }
+
+                // PlayerBlock 是依玩家人數動態生成的 Prefab，必須在按鈕原本事件綁定完成後再補上音效。
+                AudioManager.TryRegisterButtonsInChildren(playerUI);
             }
         }
 

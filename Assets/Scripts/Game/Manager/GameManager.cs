@@ -103,6 +103,24 @@ namespace Manager
         }
 
         /// <summary>
+        /// 在所有場景物件完成 Awake 後播放遊戲背景音樂。
+        /// </summary>
+        private void Start()
+        {
+            if (instance != this)
+            {
+                // 重複的 GameManager 會在 Awake 被銷毀，不應再觸發任何音樂切換。
+                return;
+            }
+
+            if (SceneManager.GetActiveScene().name == GameSceneName)
+            {
+                // 進入 Game 場景後才播放局內背景音樂，開始畫面的音樂會在此被自然替換。
+                AudioManager.TryPlayMusic(AudioTrack.Gameplay);
+            }
+        }
+
+        /// <summary>
         /// 在目前作用中場景的 Canvas 底下建立遊戲設定面板。
         /// </summary>
         private void CreateSettingPanel()
@@ -138,6 +156,8 @@ namespace Manager
             }
 
             SubscribeSetupEvents();
+            // 設定面板由 Prefab 動態生成，需在生成後補上共用按鈕音效，避免 GameSetting 內的按鈕漏播回饋。
+            AudioManager.TryRegisterButtonsInChildren(settingPanelObj);
             print("Setting Panel Active");
         }
 
@@ -251,6 +271,9 @@ namespace Manager
             {
                 return;
             }
+
+            // 從 AR 掃描回到 Game 且尚未結算時延續局內音樂；同一首播放中時 AudioManager 不會重播。
+            AudioManager.TryPlayMusic(AudioTrack.Gameplay);
 
             // 只有掃描流程暫停過的局才恢復倒數，避免首次進入 Game 時跳過玩家設定流程。
             ResumeTimerAfterScanIfNeeded();
@@ -446,6 +469,9 @@ namespace Manager
             hasStartedGameTimer = false;
             hasPendingScoreVictory = false;
 
+            // 結算階段要隱藏局內背景音樂，因此直接切換成結算音樂。
+            AudioManager.TryPlayMusic(AudioTrack.GameResult);
+
             if (activeGameTimer != null && !activeGameTimer.HasExpired)
             {
                 // 手動結算時也要停住倒數，避免背景倒數歸零後再次開啟結算流程。
@@ -571,6 +597,8 @@ namespace Manager
                 GameObject techPanelObj = Instantiate(techPanel,canvas.transform);
                 techPanelObj.transform.SetAsLastSibling();
                 techPanelObj.SetActive(true);
+                // 教學面板同樣是執行期生成的 UI，因此需要在生成後補註冊按鈕音效。
+                AudioManager.TryRegisterButtonsInChildren(techPanelObj);
                 return;
             }
 
