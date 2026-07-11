@@ -32,6 +32,9 @@ graphify-out.meta
 # Visual Studio cache directory
 .vs/
 
+# JetBrains IDE 專案設定目錄
+.idea/
+
 # Gradle cache directory
 .gradle/
 
