@@ -11,7 +11,7 @@ using UI;
 namespace Manager
 {
     /// <summary>
-    /// 管理玩家資料、遊戲流程、教學選擇與結算觸發。
+    /// 管理玩家資料、遊戲流程、初始設定與結算觸發。
     /// </summary>
     public class GameManager : MonoBehaviour
     {
@@ -26,7 +26,6 @@ namespace Manager
         
         private static GameManager instance;
         private SelectPlayerCount selectPlayerCount;
-        private SelectGameUnit selectGameUnit;
 
         // 記錄設定面板事件是否已訂閱，避免 OnEnable 與動態初始化流程重複綁定同一批事件。
         private bool hasSubscribedSetupEvents;
@@ -79,7 +78,6 @@ namespace Manager
         //---------------------UI 素材----------------------------
         //UI的顯示
         [SerializeField] private GameObject settingPanel;
-        [SerializeField] private GameObject techPanel;
         [SerializeField] private Sprite[] playerSprites;
        
         private void Awake()
@@ -146,12 +144,11 @@ namespace Manager
 
             // 直接從剛生成的面板抓取元件，並包含 inactive 子物件，避免全域查找選錯場景或漏掉預設關閉的 UI。
             selectPlayerCount = settingPanelObj.GetComponentInChildren<SelectPlayerCount>(true);
-            selectGameUnit = settingPanelObj.GetComponentInChildren<SelectGameUnit>(true);
 
-            if (selectPlayerCount == null || selectGameUnit == null)
+            if (selectPlayerCount == null)
             {
-                // 設定流程需要兩個事件來源都存在，否則人數與教學選擇無法可靠推進。
-                Debug.LogError("[GameManager] GameSetting 預製體缺少 SelectPlayerCount 或 SelectGameUnit。", settingPanelObj);
+                // 玩家人數是建立遊戲資料的唯一必要入口，缺少時必須中止避免生成不完整資料。
+                Debug.LogError("[GameManager] GameSetting 預製體缺少 SelectPlayerCount。", settingPanelObj);
                 return;
             }
 
@@ -184,7 +181,7 @@ namespace Manager
         
 
         /// <summary>
-        /// 訂閱設定面板事件，讓玩家完成人數與教學選擇後能推進遊戲流程。
+        /// 訂閱設定面板事件，讓玩家完成人數設定後能推進遊戲流程。
         /// </summary>
         private void OnEnable()
         {
@@ -215,25 +212,16 @@ namespace Manager
                 return;
             }
 
-            if (selectPlayerCount == null || selectGameUnit == null)
+            if (selectPlayerCount == null)
             {
-                // 設定流程必須同時取得人數與教學選擇事件來源，避免只訂到一半造成流程狀態不完整。
+                // 設定面板可能尚未由 Awake 建立，等待 CreateSettingPanel 完成後再訂閱。
                 return;
             }
 
-            if (selectPlayerCount != null)
-            {
-                // 設定面板是 Awake 動態產生的 UI，訂閱前保留 null 防護以避免場景綁定異常中斷流程。
-                selectPlayerCount.OnPlayerCountConfirmed += GeneratePlayerData;
-            }
+            // 設定面板是 Awake 動態產生的 UI，玩家人數確認後即可建立資料並啟動正式流程。
+            selectPlayerCount.OnPlayerCountConfirmed += GeneratePlayerData;
 
-            if (selectGameUnit != null)
-            {
-                // 教學選擇與倒數啟動相依，因此只在元件確實存在時建立事件連線。
-                selectGameUnit.OnComfirmPlayTech += GameDataGameTechPanel;
-            }
-
-            // 兩個事件來源都準備好才標記已訂閱，避免缺件時讓後續補救流程誤以為事件已連線。
+            // 只在事件來源準備好後標記已訂閱，避免場景重啟時重複綁定同一個回呼。
             hasSubscribedSetupEvents = true;
         }
 
@@ -288,12 +276,6 @@ namespace Manager
             {
                 // Unity 切場景時 UI 可能已先被銷毀，退訂前檢查可避免重新開始流程被 NullReference 中斷。
                 selectPlayerCount.OnPlayerCountConfirmed -= GeneratePlayerData;
-            }
-
-            if (selectGameUnit != null)
-            {
-                // 與人數設定相同，教學選擇事件需要在物件仍有效時才解除。
-                selectGameUnit.OnComfirmPlayTech -= GameDataGameTechPanel;
             }
 
             // 無論事件來源是否已被場景卸載銷毀，都要重置旗標，避免下次新局無法重新訂閱。
@@ -487,7 +469,10 @@ namespace Manager
 
         // --------------------- 玩家資料產生 ----------------------------
         
-        //初始化玩家資料
+        /// <summary>
+        /// 依玩家選擇的人數初始化本局資料，並在設定完成後直接啟動正式倒數。
+        /// </summary>
+        /// <param name="playerCount">玩家選擇的人數，型別為 int。</param>
         private void GeneratePlayerData(int playerCount)
         {
             // 重新生成前先清空，避免重複累加
@@ -520,6 +505,8 @@ namespace Manager
             }
             // 通知 UI 更新,UIManager產生相對應的UI
             OnPlayerDataGenerated?.Invoke(playersData);
+            // 教學開關 UI 已移除，玩家完成必要設定後即可直接進入正式倒數。
+            StartGameTimerAfterSetup();
         }
 
         
@@ -577,37 +564,7 @@ namespace Manager
         // --------------------- Game Data ----------------------------
         
         /// <summary>
-        /// 寫入是否需要教學流程，並依玩家選擇決定倒數計時的開始時機。
-        /// </summary>
-        /// <param name="isOpen">是否開啟教學面板。</param>
-        private void GameDataGameTechPanel(bool isOpen)
-        {
-            gameData[0].isTech = isOpen;
-            //如果需要教學就開啟介紹
-            if (isOpen)
-            {
-                Canvas canvas = FindActiveSceneCanvas();
-                if (canvas == null)
-                {
-                    // 教學面板同樣必須掛在 Game 場景 Canvas，避免被跨場景轉場物件銷毀。
-                    Debug.LogError("[GameManager] 找不到目前場景的 Canvas，無法建立教學面板。", this);
-                    return;
-                }
-
-                GameObject techPanelObj = Instantiate(techPanel,canvas.transform);
-                techPanelObj.transform.SetAsLastSibling();
-                techPanelObj.SetActive(true);
-                // 教學面板同樣是執行期生成的 UI，因此需要在生成後補註冊按鈕音效。
-                AudioManager.TryRegisterButtonsInChildren(techPanelObj);
-                return;
-            }
-
-            // 若玩家未開啟教學，設定完成就代表正式進入遊戲，因此此時才啟動倒數。
-            StartGameTimerAfterSetup();
-        }
-
-        /// <summary>
-        /// 在玩家完成設定或教學後啟動場景中的遊戲倒數計時器。
+        /// 在玩家完成必要設定後啟動場景中的遊戲倒數計時器。
         /// </summary>
         public void StartGameTimerAfterSetup()
         {

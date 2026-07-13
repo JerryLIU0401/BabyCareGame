@@ -29,10 +29,10 @@ namespace Manager
         [Header("控制滑動平滑度的動畫曲線")]
         [SerializeField] private AnimationCurve slideCurve; 
         
-        [Header("螢幕外左側位置")]
+        [Header("螢幕外左側位置（執行時依 Canvas 寬度覆寫）")]
         [SerializeField] private Vector2 offScreenLeft = new Vector2(-800, 0);
         
-        [Header("螢幕外右側位置")]
+        [Header("螢幕外右側位置（執行時依 Canvas 寬度覆寫）")]
         [SerializeField] private Vector2 offScreenRight = new Vector2(800, 0);
         
         [Header("中間位置")]
@@ -45,7 +45,10 @@ namespace Manager
 
         private void Start()
         {
-            // 初始化面板位置和透明度
+            // 先依目前 Canvas 尺寸計算畫面外位置，避免手機和平板版型不同時沿用固定座標。
+            UpdateDynamicScreenPositions();
+
+            // 初始化面板位置和透明度，讓第一個提示播放前不會露出在畫面中。
             panelTransform.anchoredPosition = offScreenLeft;
             canvasGroup.alpha = 0f;
         }
@@ -103,6 +106,9 @@ namespace Manager
         /// <returns>回傳 Unity Coroutine 逐幀執行流程。</returns>
         private IEnumerator PlayTransition(string message, Action onCompleted)
         {
+            // 每次播放前重新計算距離，避免解析度或裝置方向改變後仍使用舊版型座標。
+            UpdateDynamicScreenPositions();
+
             // 設置文字內容
             messageText.text = message;
 
@@ -123,6 +129,36 @@ namespace Manager
 
             // 結算畫面必須等過場完全消失後才開啟，避免兩層 UI 疊在一起。
             onCompleted?.Invoke();
+        }
+
+        /// <summary>
+        /// 依照目前父層 RectTransform 與面板寬度，更新左右畫面外的滑動目標位置。
+        /// </summary>
+        /// <remarks>
+        /// 參數：無。回傳值：無；此方法會直接覆寫執行期的 <c>offScreenLeft</c> 與 <c>offScreenRight</c>。
+        /// </remarks>
+        private void UpdateDynamicScreenPositions()
+        {
+            // Canvas 版面可能在本幀稍晚才完成更新，先強制刷新可避免讀到上一個解析度的尺寸。
+            Canvas.ForceUpdateCanvases();
+
+            // 以父層寬度作為目前可視區域，讓轉場距離跟著 Canvas Scaler 的結果走。
+            RectTransform parentTransform = panelTransform.parent as RectTransform;
+            float parentWidth = parentTransform != null ? parentTransform.rect.width : panelTransform.rect.width;
+
+            // 使用面板寬度納入計算，避免未來面板不是滿版時只移動父層寬度仍殘留邊角。
+            float panelWidth = panelTransform.rect.width;
+            float dynamicDistance = (parentWidth + panelWidth) * 0.5f;
+
+            // Inspector 原值保留為後備距離，避免版面尚未完成、寬度讀到 0 時面板停在畫面內。
+            float fallbackDistance = Mathf.Max(
+                Mathf.Abs(offScreenLeft.x - centerScreen.x),
+                Mathf.Abs(offScreenRight.x - centerScreen.x));
+            float offScreenDistance = Mathf.Max(dynamicDistance, fallbackDistance);
+
+            // 以 centerScreen 為基準可保留既有 Y 軸偏移設定，只動態修正水平滑動距離。
+            offScreenLeft = centerScreen + Vector2.left * offScreenDistance;
+            offScreenRight = centerScreen + Vector2.right * offScreenDistance;
         }
 
         /// <summary>
