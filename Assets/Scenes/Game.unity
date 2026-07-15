@@ -7009,8 +7009,6 @@ MonoBehaviour:
   fourPlayerVictoryScore: 15
   settingPanel: {fileID: 1002874058995372633, guid: c8ffbc3a07194493896ef2572d0d7871,
     type: 3}
-  techPanel: {fileID: 6836158493933672340, guid: 70a396de8ff944de380fe128a24efa8d,
-    type: 3}
   playerSprites:
   - {fileID: 21300000, guid: 28a3ea1d11e42114da96def04d3baa27, type: 3}
   - {fileID: 21300000, guid: e416af84dd87e2b41b5768e019e9124e, type: 3}
@@ -7049,7 +7047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1801728517
 RectTransform:
   m_ObjectHideFlags: 0

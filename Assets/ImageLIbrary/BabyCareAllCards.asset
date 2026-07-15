@@ -26,7 +26,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: sprain
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 01e0be8f7c7005c419262f977ecab288, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5686401840398879136
       m_GuidHigh: 5716776383016153023
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: sprain_C
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: c753b5fff55800b40b994cda23d116a2, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5324146992839709127
       m_GuidHigh: 14001939476497704863
@@ -46,7 +46,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: sprain_E
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 9956be5275b033d428a18043417d4c30, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5656943596033732708
       m_GuidHigh: 3644756320561638571
@@ -56,7 +56,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: sprain_I
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 1e6a3225397846146a2a162ca878e61d, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5677027504016863300
       m_GuidHigh: 10312578288966407831
@@ -66,7 +66,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: sprain_R
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 73676b1b4a10faa42ab9f6297cd64c46, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5202486031156050665
       m_GuidHigh: 14581440548377740161
@@ -76,7 +76,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: 3010
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: a421f0f4ca2805140a7fb2b55dd25ea1, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 4787680957820595690
       m_GuidHigh: 7424167175640301755
@@ -86,7 +86,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: eyesProtect
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 60ddea84265aef1409b17d4072fe962c, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5329858439068791430
       m_GuidHigh: 17504630877184784797
@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: outside
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: e4b79116d69afa84ebb229bc448cfd73, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 4703196682535606341
       m_GuidHigh: 3999189123726681239
@@ -116,7 +116,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: bites
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 6596391e6498a1343893e9e768f49357, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5002443941053430251
       m_GuidHigh: 17774982594657792951
@@ -136,7 +136,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: handwashing
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 74a825c1069d1834caab6eb088e01150, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5121865675298841246
       m_GuidHigh: 2904427425566124182
@@ -146,7 +146,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: heatstroke
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 86790605e19b939489a56d2d1883b156, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5554583944385218353
       m_GuidHigh: 5739598196443327125
@@ -156,7 +156,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: nosebleed
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: fe58cdd2e7f68d14fbb7d520aac2a582, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5597731127784409644
       m_GuidHigh: 4416659558494684834
@@ -166,7 +166,7 @@ MonoBehaviour:
     m_Size: {x: 0.055, y: 0.08754298}
     m_SpecifySize: 1
     m_Name: preventingColds
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 6c4de0d52b024144f832ce5226c07c66, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 4783789957109375275
       m_GuidHigh: 711749568557031608
