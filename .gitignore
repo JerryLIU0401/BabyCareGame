@@ -70,6 +70,7 @@ sysinfo.txt
 *.unitypackage
 *.unitypackage.meta
 *.app
+/ios/
 
 # Crashlytics generated file
 crashlytics-build.properties
