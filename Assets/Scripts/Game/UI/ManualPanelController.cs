@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace UI
 {
     /// <summary>
-    /// 控制遊戲設定畫面中的說明書開關、圖片翻頁與邊界按鈕顯示。
+    /// 控制說明書的面板切換、圖片翻頁、邊界按鈕與選配的倒數暫停。
     /// </summary>
     public sealed class ManualPanelController : MonoBehaviour
     {
@@ -20,27 +20,50 @@ namespace UI
         [SerializeField] private GameObject previousButton;
         [SerializeField] private GameObject nextButton;
 
+        // GameSetting 不需要計時器；Game 場景可選配此參考，重用同一套說明書行為。
+        [SerializeField] private GameTimer gameTimer;
+
+        // 只恢復本次開啟前確實正在執行的倒數，避免誤啟動其他流程已暫停的計時器。
+        private bool shouldResumeTimer;
+
         // 頁碼只屬於目前開啟的說明書，不需要跨場景或跨次開啟保存。
         private int currentPageIndex;
 
         /// <summary>
-        /// 顯示說明書並從第一頁開始。
+        /// 顯示說明書並從第一頁開始；若倒數正在執行則暫停。
         /// </summary>
         public void OpenManual()
         {
             currentPageIndex = 0;
+            shouldResumeTimer = gameTimer != null && gameTimer.IsRunning;
+
+            if (shouldResumeTimer)
+            {
+                // 只暫停局內倒數，不使用 timeScale 影響其他遊戲系統。
+                gameTimer.PauseTimer();
+            }
+
             settingPanel.SetActive(false);
             manualPanel.SetActive(true);
             RefreshPage();
         }
 
         /// <summary>
-        /// 關閉說明書並恢復遊戲設定畫面。
+        /// 關閉說明書、恢復來源畫面，並視開啟前狀態繼續倒數。
         /// </summary>
         public void CloseManual()
         {
             manualPanel.SetActive(false);
             settingPanel.SetActive(true);
+
+            bool resumeTimer = shouldResumeTimer;
+            shouldResumeTimer = false;
+
+            if (resumeTimer && gameTimer != null)
+            {
+                // 同一場景的 GameTimer 已保留剩餘秒數，不需要建立另一份時間狀態。
+                gameTimer.ResumeTimer(gameTimer.GetRemainingSeconds());
+            }
         }
 
         /// <summary>

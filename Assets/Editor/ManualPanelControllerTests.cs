@@ -128,6 +128,44 @@ public sealed class ManualPanelControllerTests
     }
 
     /// <summary>
+    /// 驗證說明書只會恢復本次開啟前正在執行的倒數。
+    /// </summary>
+    [Test]
+    public void OpenAndCloseManual_PreservesTimerRunningState()
+    {
+        GameObject timerObject = CreateChild("GameTimer");
+        GameTimer gameTimer = timerObject.AddComponent<GameTimer>();
+        AssignReference("gameTimer", gameTimer);
+
+        controller.OpenManual();
+        controller.CloseManual();
+
+        // 尚未開始的倒數不可因關閉說明書而被誤啟動。
+        Assert.That(gameTimer.HasStarted, Is.False);
+        Assert.That(gameTimer.IsRunning, Is.False);
+
+        gameTimer.ResumeTimer(123f);
+
+        controller.OpenManual();
+
+        Assert.That(gameTimer.IsRunning, Is.False);
+        Assert.That(gameTimer.GetRemainingSeconds(), Is.EqualTo(123f));
+
+        controller.CloseManual();
+
+        Assert.That(gameTimer.IsRunning, Is.True);
+        Assert.That(gameTimer.GetRemainingSeconds(), Is.EqualTo(123f));
+
+        gameTimer.PauseTimer();
+        controller.OpenManual();
+        controller.CloseManual();
+
+        // 已開始但由其他流程暫停的倒數，關閉說明書後仍必須維持暫停。
+        Assert.That(gameTimer.IsRunning, Is.False);
+        Assert.That(gameTimer.GetRemainingSeconds(), Is.EqualTo(123f));
+    }
+
+    /// <summary>
     /// 建立掛在測試根物件下的暫時子物件。
     /// </summary>
     /// <param name="name">子物件名稱。</param>
