@@ -144,18 +144,25 @@ public sealed class ManualPanelControllerTests
         Assert.That(gameTimer.HasStarted, Is.False);
         Assert.That(gameTimer.IsRunning, Is.False);
 
-        gameTimer.StartTimer();
-        float remainingSeconds = gameTimer.GetRemainingSeconds();
+        gameTimer.ResumeTimer(123f);
 
         controller.OpenManual();
 
         Assert.That(gameTimer.IsRunning, Is.False);
-        Assert.That(gameTimer.GetRemainingSeconds(), Is.EqualTo(remainingSeconds));
+        Assert.That(gameTimer.GetRemainingSeconds(), Is.EqualTo(123f));
 
         controller.CloseManual();
 
         Assert.That(gameTimer.IsRunning, Is.True);
-        Assert.That(gameTimer.GetRemainingSeconds(), Is.EqualTo(remainingSeconds));
+        Assert.That(gameTimer.GetRemainingSeconds(), Is.EqualTo(123f));
+
+        gameTimer.PauseTimer();
+        controller.OpenManual();
+        controller.CloseManual();
+
+        // 已開始但由其他流程暫停的倒數，關閉說明書後仍必須維持暫停。
+        Assert.That(gameTimer.IsRunning, Is.False);
+        Assert.That(gameTimer.GetRemainingSeconds(), Is.EqualTo(123f));
     }
 
     /// <summary>
